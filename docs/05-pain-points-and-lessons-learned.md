@@ -24,13 +24,14 @@ attached to manual emails.
 
 **New Requirements:**
 - Manual report that took up to 40 hours to compile needed to be automated.
-- Manual entry to volume reporting tool from the report needed to be automated automated  
+- Manual entry to volume reporting tool from the report needed to be automated  
 
 **Challenges:**
 - Various excel sheets in different formats needed to be put into a centralized format.
 - Some of the excel sheets contained password protection which needed to be removed from
-  the attachments. Separate emails were sent containing the passwords. Removal needed to 
-  be done manually.
+  the attachments. Separate emails were sent containing the passwords. These were sent by 
+  the same individual who provided the data but up to an hour later. Removal of passwords
+  needed to be done manually.
 - Countries were named differently across the different tests.
 - Small changes in worksheet structure would break downstream processes which needed to 
   be fixed manually.
@@ -55,7 +56,8 @@ attached to manual emails.
 - Minor changes to formating of excel files would result in automated Power BI refreshes
 - Password protection removal could not be handled by Power automate and needed to be done manually.
 - Late submissions of excel sheets would result in the necessity to repeat manual fixes
-- Manual updates would be needed frequently resulting in up to 3 hours of additional work.
+- Manual updates would be needed on the third day of each month resulting in up to 3 hours of additional work
+  on the day that files were due.
 
 **Redesign Principals**
 - Power apps solution to enter volumes daily should be reinstated.
