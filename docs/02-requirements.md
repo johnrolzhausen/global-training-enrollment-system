@@ -1,5 +1,3 @@
-# Requirements
-
 # Requirements Document
 ## Global Training Enrollment System
 
