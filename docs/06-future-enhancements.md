@@ -7,8 +7,8 @@
 
 ## "Someday/Maybe" Ideas
 - [ ] Integration with additional forecasting tools
-- [ ] Automated anomaly explanation using AI
-- [ ] Collaboration features for regional managers
+- [ ] Automated creation of Excel reports containing data currently created manually but in a centralized structure
+      
 
 ## Ideas Considered & Rejected (with reasons)
-- ~~Real-time chat support~~ - Adds complexity without solving core problem
+- 
