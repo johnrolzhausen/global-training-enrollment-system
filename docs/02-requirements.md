@@ -44,7 +44,7 @@ This document defines the functional and non-functional requirements for the Glo
 
 ---
 
-### 2.2 Data Quality Analyst (John's Role)
+### 2.2 Data Quality Analyst
 **Primary User:** Finance analyst responsible for data validation and consolidation
 
 **Key Needs:**
