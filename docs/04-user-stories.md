@@ -19,7 +19,6 @@ This document defines the user personas and user stories for the Global Training
 ### Persona 1: Ji-Won Kim (Country Volume Coordinator - Korea)
 
 **Background:**
-- Age: 34
 - Role: Regional Operations Manager, Seoul Office
 - Responsibility: Submits monthly enrollment volumes for all Korea training programs
 - Technical Proficiency: Moderate (comfortable with Excel, email, basic web applications)
@@ -53,7 +52,6 @@ This document defines the user personas and user stories for the Global Training
 ### Persona 2: Marie Dubois (Country Volume Coordinator - France)
 
 **Background:**
-- Age: 42
 - Role: European Training Coordinator, Paris Office
 - Responsibility: Submits volumes for ALL European countries (grouped by region: Western Europe, Eastern Europe, Nordic)
 - Technical Proficiency: High (creates complex Excel workbooks, uses pivot tables, comfortable with new systems)
@@ -87,7 +85,6 @@ This document defines the user personas and user stories for the Global Training
 ### Persona 3: Yuki Tanaka (Country Volume Coordinator - Japan)
 
 **Background:**
-- Age: 51
 - Role: Training Administration Manager, Tokyo Office
 - Responsibility: Submits monthly volumes for Japan
 - Technical Proficiency: Low-Moderate (uses Excel for basic tasks, prefers familiar processes, cautious about new systems)
@@ -122,7 +119,6 @@ This document defines the user personas and user stories for the Global Training
 ### Persona 4: John Rolzhausen (Data Quality Analyst)
 
 **Background:**
-- Age: [Your age]
 - Role: Senior Finance Analyst, USA Corporate Office
 - Responsibility: Consolidate all country submissions, validate data quality, export to TM1, support finance leadership
 - Technical Proficiency: High (Power Platform expert, SQL knowledge, Excel power user, data analysis)
@@ -161,7 +157,6 @@ This document defines the user personas and user stories for the Global Training
 ### Persona 5: Robert Chen (CFO)
 
 **Background:**
-- Age: 56
 - Role: Chief Financial Officer
 - Responsibility: Financial oversight, strategic planning, board reporting
 - Technical Proficiency: Moderate-High (comfortable with dashboards, Excel, wants insights without digging through data)
