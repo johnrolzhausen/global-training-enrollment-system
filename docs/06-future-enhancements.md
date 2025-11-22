@@ -37,6 +37,26 @@
 - [ ] Integration with additional forecasting tools
 - [ ] Automated creation of Excel reports containing data currently created manually but in a centralized structure
       
+## Future Enhancement: Test Center Level Detail
+
+**Description:** Allow submissions at test center level within countries, 
+with subtest breakdowns for courses with multiple components.
+
+**Business Value:**
+- More granular regional analysis
+- Identify high/low performing centers
+- Track subtest popularity
+
+**Implementation Complexity:**
+- Additional dimension table (TestCenters)
+- Junction table (Country_TestCenter)
+- Modified submission UX (2-step: center selection, then volumes)
+- Aggregation logic in Power BI
+- Increased data entry time per submission
+
+**Decision:** Deferred to Phase 2 pending stakeholder demand
+
+**Estimated Effort:** 2 weeks development
 
 ## Ideas Considered & Rejected (with reasons)
 - 
