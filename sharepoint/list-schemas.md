@@ -911,7 +911,124 @@ Both lists have 4-6 indexed columns for query performance. SharePoint's 5,000 it
 - Power BI DirectQuery optimization
 
 ---
+### Email Configuration for Development and Production
 
+#### Test Email Accounts
+
+**Security Consideration:**
+This repository is public on GitHub. To protect personal and business email addresses from web scraping and spam bots, dedicated test Gmail accounts were created specifically for this portfolio project.
+
+**Test Accounts Created:**
+- jiwon.kim.demo@gmail.com (Korea Coordinator - Primary)
+- yuki.tanaka.demo@gmail.com (Japan Coordinator - Backup)
+- alice.chen.demo@gmail.com (Data Quality Analyst)
+- marie.dubois.demo@gmail.com (France Coordinator - Primary)
+
+**Benefits of This Approach:**
+1. **Security:** Protects personal/business email addresses in public repository
+2. **Realistic Testing:** Separate inboxes enable true multi-user workflow simulation
+3. **Verification:** Can confirm notifications reach correct recipients by role
+4. **Demonstration:** Shows understanding of proper test environment setup
+5. **Privacy:** Project-specific accounts can be deactivated after portfolio completion
+
+**Cross-Tenant Email Capability:**
+Power Automate flows send emails FROM the tenant account (John@Rolzhausen.com) TO external Gmail addresses without restrictions. This demonstrates:
+- Cross-tenant email capability (common in B2B scenarios)
+- Proper separation of dev/test environments
+- Understanding of external communication requirements
+
+---
+
+#### Shared Mailbox Strategy (Production Best Practice)
+
+**Development Environment:**
+All Power Automate notification flows send emails FROM: John@Rolzhausen.com (developer's tenant account)
+
+**Production Implementation:**
+In a production environment, automated system notifications would be sent from a dedicated shared mailbox rather than a personal account.
+
+**Recommended Production Configuration:**
+```
+Shared Mailbox: EnrollmentNotifications@company.com
+Purpose: System-generated workflow notifications
+Access: Data Quality team members, administrators
+Power Automate Action: "Send an email from a shared mailbox (V2)"
+```
+
+**Benefits of Shared Mailbox Approach:**
+
+1. **Professional Appearance**
+   - System identity vs personal communication
+   - Builds user trust in automated notifications
+   - Clear separation between system and individual emails
+
+2. **Business Continuity**
+   - Independent of individual employee accounts
+   - Notifications persist through personnel changes
+   - No disruption when team members transition roles
+
+3. **Team Collaboration**
+   - Multiple team members can monitor sent items
+   - Shared visibility into all system communications
+   - Collaborative response to user inquiries
+
+4. **Audit Trail & Compliance**
+   - Complete history of system communications
+   - Regulatory compliance for notification tracking
+   - Searchable archive of all automated emails
+
+5. **Permission Management**
+   - Granular control over mailbox access
+   - Easy to add/remove team members
+   - Separate from individual user permissions
+
+**Microsoft 365 Licensing:**
+Shared mailboxes are included in Microsoft 365 Business Standard at no additional cost (up to 50GB storage per shared mailbox). They can be created through the Microsoft 365 Admin Center under Teams & groups → Shared mailboxes.
+
+**Technical Implementation:**
+
+In Power Automate, the action configuration would be:
+```
+Action: Send an email from a shared mailbox (V2)
+Shared Mailbox Address: EnrollmentNotifications@company.com
+To: @{outputs('Get_UserEmail')?['body/UserEmail']}
+Subject: Enrollment Submission Status Update
+Body: [HTML email template]
+Importance: Normal
+```
+
+**Why Not Implemented in Development:**
+- Single-user tenant limits demonstration of multi-user shared mailbox access
+- Development emails sent from personal account are sufficient for workflow testing
+- Documentation of production approach demonstrates enterprise architecture knowledge
+- Time invested in setup vs value gained in solo development environment
+
+**Production Migration Path:**
+1. Create shared mailbox in production Microsoft 365 tenant
+2. Grant Send As permissions to service account running Power Automate flows
+3. Update all notification flows to use "Send from shared mailbox" action
+4. Configure mailbox permissions for team members requiring access
+5. Set up retention policies per organizational compliance requirements
+
+---
+
+#### Email Sample Data Standards
+
+All user email fields in the SharePoint lists use the test Gmail accounts to enable verification of notification flows during development.
+
+**Affected Lists:**
+- tbl_UserCountries: UserEmail field
+- tbl_VolumeSubmissions: SubmittedByEmail, ValidatedByEmail, LastModifiedByEmail, DeletedByEmail
+- tbl_SubmissionHistory: ChangedByEmail  
+- tbl_DataQualityFlags: ResolvedByEmail
+
+**Sample Email Addresses:**
+- Primary Coordinators: jiwon.kim.demo@gmail.com, marie.dubois.demo@gmail.com
+- Backup Coordinator: yuki.tanaka.demo@gmail.com
+- Analyst: alice.chen.demo@gmail.com
+
+**Production Replacement:**
+In production deployment, these text fields would be replaced with Person columns that automatically populate email addresses from Azure AD user profiles, eliminating manual entry and ensuring data accuracy.
 ## 7. Post-Build Validation Checklist
 
 After all 9 lists are created:
