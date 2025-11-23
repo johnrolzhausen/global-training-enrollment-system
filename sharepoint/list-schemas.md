@@ -470,11 +470,11 @@ Enforce relationship behavior: Restrict Delete
 
 | Title | UserEmail | UserName | CountryID | IsPrimary | IsBackup | EffectiveDate | EndDate | Notes |
 |-------|-----------|----------|-----------|-----------|----------|---------------|---------|-------|
-| Ji-Won Kim - Korea | jiwon.kim@test.com | Ji-Won Kim | Republic of Korea | Yes | No | 2023-01-01 | | Primary coordinator since 2023 |
-| Yuki Tanaka - Korea | yuki.tanaka@test.com | Yuki Tanaka | Republic of Korea | No | Yes | 2024-06-01 | | Backup for vacation coverage |
-| Alice Chen - Korea | alice.chen@test.com | Alice Chen | Republic of Korea | No | No | 2023-01-01 | | Analyst validation assignment |
-| Alice Chen - Japan | alice.chen@test.com | Alice Chen | Japan | No | No | 2023-01-01 | | Analyst validation assignment |
-| Marie Dubois - France | marie.dubois@test.com | Marie Dubois | France | Yes | No | 2022-01-01 | | Primary coordinator |
+| Ji-Won Kim - Korea | jiwon.kim.demo@outlook.com | Ji-Won Kim | Republic of Korea | Yes | No | 2023-01-01 | | Primary coordinator since 2023 |
+| Yuki Tanaka - Korea | yuki.tanaka.demo@outlook.com | Yuki Tanaka | Republic of Korea | No | Yes | 2024-06-01 | | Backup for vacation coverage |
+| Alice Chen - Korea | alice.katt.demo@outlook.com | Alice Katt | Republic of Korea | No | No | 2023-01-01 | | Analyst validation assignment |
+| Alice Chen - Japan | alice.katt.demo@outlook.com| Alice Katt | Japan | No | No | 2023-01-01 | | Analyst validation assignment |
+| Marie Dubois - France | marie.dubois.demo@outlook.com| Marie Dubois | France | Yes | No | 2022-01-01 | | Primary coordinator |
 
 **Build Checklist:**
 - [ ] List created
