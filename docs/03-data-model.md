@@ -1,8 +1,8 @@
 # Data Model Design Document
 ## Global Training Enrollment System
 
-**Version:** 1.0  
-**Date:** November 20, 2025  
+**Version:** 1.1  
+**Date:** November 22, 2025  
 **Author:** John Rolzhausen  
 **Status:** Draft - In Review
 
@@ -1231,7 +1231,7 @@ ORDER BY COUNT(*) DESC;
 ## 14. SharePoint Implementation Status
 
 **Schema Design:** ✅ Complete (November 21, 2025)
-**Documentation:** See `docs/04-sharepoint-schema.md` for detailed specifications
+**Documentation:** See `sharepoint/list-schemas.md`
 
 **Implementation Approach:**
 - Text field workaround for Person columns (single-user tenant constraint)
