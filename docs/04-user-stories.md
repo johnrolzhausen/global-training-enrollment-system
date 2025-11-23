@@ -190,7 +190,7 @@ This document defines the user personas and user stories for the Global Training
 
 ---
 
-### Persona 6: Alice Katt (Enters Volumes into Salesforce)
+### Persona 6: Alice Katt (Analyst validation assignment)
 
 **Background:**
 - Role: Business Analyst
