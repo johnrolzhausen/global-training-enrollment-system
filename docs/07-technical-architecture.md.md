@@ -38,7 +38,7 @@ The system follows a modern four-layer architecture pattern, separating concerns
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                     PRESENTATION LAYER                          │
-│  Power BI Dashboards (Analytics) + Power Apps (Data Entry)      │
+│  Power BI Dashboards (Analytics) + Power Apps (Data Entry)     │
 │  - Executive reporting dashboards                               │
 │  - Submission Portal (external users)                           │
 │  - Data Quality Dashboard (internal analysts)                   │
@@ -62,13 +62,13 @@ The system follows a modern four-layer architecture pattern, separating concerns
 ┌─────────────────────────────────────────────────────────────────┐
 │                      DATA LAYER                                 │
 │                SharePoint Online Lists                          │
-│  - tbl_VolumeSubmissions (fact table)                           │
-│  - tbl_Countries, tbl_TestTypes (dimensions)                    │
-│  - tbl_SubmissionHistory (audit trail)                          │
-│  - tbl_DataQualityFlags (validation tracking)                   │
-│  - tbl_UserCountries (assignments)                              │
-│  - tbl_SystemConfig (configuration)                             │
-│  - 9 lists total with referential integrity                     │
+│  - tbl_VolumeSubmissions (fact table)                          │
+│  - tbl_Countries, tbl_TestTypes (dimensions)                   │
+│  - tbl_SubmissionHistory (audit trail)                         │
+│  - tbl_DataQualityFlags (validation tracking)                  │
+│  - tbl_UserCountries (assignments)                             │
+│  - tbl_SystemConfig (configuration)                            │
+│  - 9 lists total with referential integrity                    │
 └────────────────────┬────────────────────────────────────────────┘
                      │
                      │ Azure AD Integration
@@ -76,64 +76,38 @@ The system follows a modern four-layer architecture pattern, separating concerns
 ┌─────────────────────────────────────────────────────────────────┐
 │                    SECURITY LAYER                               │
 │                Azure Active Directory                           │
-│  - Single Sign-On (SSO) authentication                          │
-│  - Role-based access control (4 roles)                          │
+│  - Single Sign-On (SSO) authentication                         │
+│  - Role-based access control (4 roles)                         │
 │  - Security groups for permissions                              │
-│  - Conditional access policies                                  │
+│  - Conditional access policies                                 │
 └─────────────────────────────────────────────────────────────────┘
-
----
-
-**Development Environment Note:**
-
-This architecture document describes the **production implementation** with full Azure AD integration and multi-user capabilities. The current development environment uses a single-user Microsoft 365 Business Standard account, which requires the following workarounds:
-
-**Development Workarounds:**
-- **Person columns** → Text fields (Email + DisplayName)
-- **User context** → Dropdown simulation in Power Apps
-- **Azure AD lookup** → Hardcoded test user list
-- **Row-level security** → Simulated with text-based filtering
-
-**Production Migration Path:**
-When deployed to a production environment with multiple licensed users:
-1. Replace text fields with Person columns (SharePoint schema update)
-2. Remove user simulation dropdown (use User() function)
-3. Enable Azure AD security group integration
-4. Implement proper row-level security in Power BI
-5. Test with actual user accounts and permissions
-
-**Architectural Integrity:**
-The data model design, application workflows, and security roles are production-ready. Only the authentication mechanism requires migration from development simulation to production Azure AD integration. All business logic, validations, and workflows remain unchanged.
-
-See `/sharepoint/list-schemas.md` Section 2 for detailed documentation of the text field workaround strategy.
-
----
+```
 
 ### 2.2 Component Interaction Map
 
 **Data Submission Flow:**
 ```
 Coordinator                Data Quality Analyst           Executive
-    │                               │                         │
-    ├─► Submission Portal           │                         │
-    │   (Power App)                 │                         │
-    │        │                      │                         │
-    │        ├─► SharePoint ────────┤                         │
-    │        │   (Save submission)  │                         │
-    │        │                      │                         │
-    │        └─► Power Automate     │                         │
-    │            (Send confirmation)│                         │
+    │                              │                         │
+    ├─► Submission Portal          │                         │
+    │   (Power App)                │                         │
+    │        │                     │                         │
+    │        ├─► SharePoint ───────┤                         │
+    │        │   (Save submission) │                         │
+    │        │                     │                         │
+    │        └─► Power Automate    │                         │
+    │            (Send confirmation)│                        │
     │                               │                         │
     │            Power Automate ────┤                         │
     │            (Flag anomalies)   │                         │
     │                               │                         │
     │                               ├─► Data Quality Dashboard│
-    │                               │   (Power App)           │
-    │                               │        │                │
-    │                               │        └─► Validate     │
-    │                               │            & Approve    │
-    │                               │                         │
-    │                               │            Power BI  ───┤
+    │                               │   (Power App)          │
+    │                               │        │               │
+    │                               │        └─► Validate    │
+    │                               │            & Approve   │
+    │                               │                        │
+    │                               │            Power BI ───┤
     │                               │            (Real-time   │
     │                               │             dashboards) │
 ```
