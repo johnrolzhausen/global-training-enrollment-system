@@ -348,8 +348,13 @@ global-training-enrollment-system/
 │   ├── 03-data-model.md                     # Entity relationships and schemas
 │   ├── 04-user-stories.md                   # Use cases and acceptance criteria
 │   └── 05-pain-points-and-lessons-learned.md # Original problem and design decisions
+│   └── 06-future-enhancements.md            # Parking lot items for future enhancement
 ├── power-apps/                              # Canvas app documentation
-│   ├── screenshots/                         # UI screenshots and wireframes
+│   ├── screenshots/                         # UI screenshots & wireframes
+│   ├── wireframes/                          # UI wireframes
+│   │   ├── wireframes-admin_console.pptx    # Admin Console app
+│   │   ├── wireframes-dataquality-portal.pptx # Data Quality Portal app 
+│   │   └── wireframes-submission-portal.pptx  # Submission Portal app  
 │   └── app-documentation.md                 # Design decisions and formulas
 ├── power-automate/                          # Flow documentation
 │   ├── flow-diagrams/                       # Visual workflow diagrams
@@ -358,6 +363,11 @@ global-training-enrollment-system/
 │   ├── screenshots/                         # Dashboard visuals
 │   └── dashboard-documentation.md           # Data model and DAX measures
 ├── sharepoint/                              # Data layer documentation
+│   ├── screenshots/                         # UI screenshots & wireframes
+│   │   ├── tbl_Countries.png                # Country Listing
+│   │   ├── tbl_CountryTestTypes.png         # Junction Table Country to Test types 
+│   │   ├── tbl_VolumeSubmissions            # Volume Submission Fact table 
+│   │   └── tbl_VolumeSubmissions (2)        # Volume Submission Fact table 
 │   └── list-schemas.md                      # List structures and relationships
 └── README.md                                # This file
 ```
@@ -415,23 +425,18 @@ This portfolio project demonstrates proficiency in:
 - ✅ User story creation with acceptance criteria
 - ✅ **SharePoint schema design (9 lists documented)** 
 - ✅ SharePoint lists creation (9 lists built with 100+ columns, 35 sample records)
-- 🔄 Wireframes and UI mockups (2 of 3 apps complete)
-  - ✅ Submission Portal (4 screens)
-  - ✅ Data Quality Dashboard (4 screens)
-  - 🔲 Admin Console (3 screens - remaining)
-- 🔲 Technical architecture documentation
+- ✅ Wireframes and UI mockups (3 apps 11 screens, 30 slides, comprehensive technical documentation)
+- 🔄 Technical architecture documentation
 
 ### Phase 2: Data Layer & Core Apps (Week 2)
-- 🔲 SharePoint site and list creation
-- 🔲 Sample data generation for testing
 - 🔲 Enrollment Submission Portal development
 - 🔲 Basic validation and submission workflows
 - 🔲 Initial Power Automate flows (email notifications)
 - 🔲 Unit testing and debugging
-
-### Phase 3: Data Quality & Integration (Week 3)
 - 🔲 Data Quality Dashboard development
 - 🔲 Administrator Console development
+
+### Phase 3: Data Quality & Integration (Week 3)
 - 🔲 Email processing automation flows
 - 🔲 Anomaly detection logic
 - 🔲 Advanced notification workflows
@@ -569,7 +574,7 @@ This redesign addresses the specific failures of the previous implementation:
 ---
 
 **Project Status**: 🚧 In Active Development  
-**Current Phase**: Phase 1 - Planning & Design (Wireframes 67% Complete)  
-**Last Updated**: November 23, 2025  
+**Current Phase**: Phase 1 - Technical architecture documentation 
+**Last Updated**: November 24, 2025  
 **Days Completed**: +5 of 20  
 **Estimated Completion**: December 14, 2025
