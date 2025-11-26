@@ -494,6 +494,34 @@ Canvas apps provide the flexibility needed for the dynamic, form-heavy interface
 ### Why DirectQuery vs Import in Power BI?
 DirectQuery ensures executives always see real-time data without manual refreshes. For this use case, query performance is acceptable given the moderate data volume.
 
+### Design System Implementation (App.Formulas Theme)
+
+**Decision:** Centralized color palette using App.Formulas instead of inline RGBA values.
+
+**Implementation:**
+```powerfx
+Theme = {
+    Primary: RGBA(0,120,212,1),
+    PrimaryLight: ColorFade(RGBA(0,120,212,1), 60%),
+    TextPrimary: RGBA(40,40,40,1),
+    Success: RGBA(0,165,95,1),
+    // ... full theme system
+}
+```
+
+**Benefits:**
+- Single source of truth for brand colors - update once, changes everywhere
+- Automatic color variations using ColorFade() for consistency
+- Semantic naming improves code readability
+- Enables rapid theme updates without touching individual controls
+- Production-ready approach used by enterprise teams
+
+**Why Not Inline Styling:**
+Inline RGBA values (e.g., `Fill = RGBA(0,120,212,1)`) create maintenance nightmares when:
+- Brand colors change (update 50+ controls manually)
+- Inconsistencies creep in (slightly different blues across screens)
+- New developers don't know which color to use
+
 ### Why SharePoint Lists vs Dataverse?
 SharePoint provides sufficient relational capabilities for this scenario while being included in most M365 licenses, reducing deployment friction. Lists also integrate seamlessly with existing document libraries.
 
