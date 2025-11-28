@@ -311,11 +311,27 @@ An integrated Power Platform solution that transforms enrollment data collection
 
 *Screenshots will be added progressively as development proceeds*
 
-### Enrollment Submission Portal
-- Login and center selection
-- Course enrollment entry form
-- Validation and confirmation screen
-- Submission history view
+### Enrollment Submission Portal (Week 2 - Complete)
+
+**Screen 1: Welcome & User Selection**
+![Welcome Screen](power-apps/screenshots/01-welcome-screen.png)
+*Modern card-based design with user dropdown filtered to active coordinators*
+
+**Screen 2: Submission Form**
+![Submission Form](power-apps/screenshots/02-submission-form.png)
+*Dynamic test type loading with three-column volume entry (Actual, Budget, Forecast)*
+
+![Submission Form - Estimate Section](power-apps/screenshots/02b-submission-form-estimate.png)
+*Conditional estimate reason field with validation*
+
+**Screen 3: Confirmation**
+![Confirmation Screen](power-apps/screenshots/03-confirmation-screen.png)
+*Success confirmation with complete submission details and next steps*
+
+**SharePoint Integration**
+![SharePoint Data](power-apps/screenshots/04-sharepoint-data.png)
+![SharePoint Data](power-apps/screenshots/04b-sharepoint-data.png)
+*Successful data writes to tbl_VolumeSubmissions with proper lookup formatting*
 
 ### Data Quality Dashboard
 - Submission tracking overview
@@ -429,7 +445,15 @@ This portfolio project demonstrates proficiency in:
 - 🔄 Technical architecture documentation
 
 ### Phase 2: Data Layer & Core Apps (Week 2)
-- 🔲 Enrollment Submission Portal development
+- ✅ SharePoint site and list creation (9 lists, 100+ columns)
+- ✅ Sample data generation for testing (35 records across all lists)
+- ✅ Enrollment Submission Portal development (3 screens)
+  - Screen 1: Welcome/User Selection
+  - Screen 2: Submission Form with dynamic test type loading
+  - Screen 3: Confirmation with submission details
+- ✅ Submission workflows (Submit and Save Draft functionality)
+- ✅ SharePoint CRUD operations (ForAll/Patch with complex lookup formats)
+- ✅ End-to-end testing with multiple user personas
 - 🔲 Basic validation and submission workflows
 - 🔲 Initial Power Automate flows (email notifications)
 - 🔲 Unit testing and debugging
@@ -528,6 +552,28 @@ SharePoint provides sufficient relational capabilities for this scenario while b
 ### Why Multiple Apps vs Single App with Screens?
 Separate apps allow for distinct security contexts (external vs internal) and independent update cycles. This also improves performance by loading only necessary components.
 
+### Why ForAll + Patch Instead of Bulk Operations?
+
+Power Apps doesn't support true bulk insert operations. The ForAll/Patch pattern is the recommended approach for multi-row operations. Key learnings:
+
+- **Lookup column format:** SharePoint requires `{Id: X, Value: "Y"}` format for lookups with additional columns shown
+- **Choice column format:** Choice fields require `{Value: "X"}` record format, not plain strings
+- **Collection strategy:** Build collection first, then iterate with ForAll for cleaner error handling
+- **Debugging technique:** Used Power Automate flow to inspect actual SharePoint schema when formulas failed
+
+This pattern successfully writes 3-15 records per submission (one per test type) with full audit trail.
+
+### Why Conditional "Actual" vs "Estimate" Labeling?
+
+When users check the "IsEstimate" checkbox, the confirmation screen dynamically changes the label from "Actual: 500" to "Estimate: 500" in the test type summary. This:
+
+- Provides immediate visual confirmation that estimate flag was applied
+- Reduces user anxiety about whether checkbox was properly submitted
+- Aligns confirmation display with actual data state in SharePoint
+- Demonstrates attention to UX detail and data accuracy
+
+Implemented via `varActualType` context variable set during submission, consumed in confirmation gallery template.
+
 *Detailed rationale for all architectural decisions documented in `/docs/05-pain-points-and-lessons-learned.md`*
 
 ---
@@ -573,8 +619,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Version History
 - **v0.1.0** (November 19, 2025) - Initial repository setup and documentation framework
-- **v0.2.0** (Target: Week 1) - Requirements and design phase complete
-- **v0.3.0** (Target: Week 2) - Core applications and data layer implemented
+- **v0.2.0** (November 20, 2025) - Requirements and design phase complete
+- **v0.25.0** (November 22, 2025) - SharePoint data layer complete (9 lists, full schema)
+- **v0.3.0** (November 28, 2025) - Submission Portal complete (3 screens, full CRUD operations)
+  - Welcome screen with user selection
+  - Dynamic submission form with scrollable gallery
+  - Confirmation screen with submission details
+  - ForAll/Patch integration with SharePoint
+  - IsEstimate functionality with conditional validation
+  - End-to-end tested with multiple personas
 - **v0.4.0** (Target: Week 3) - Integration and automation complete
 - **v1.0.0** (Target: Week 4) - Full solution with analytics and documentation
 
@@ -602,7 +655,7 @@ This redesign addresses the specific failures of the previous implementation:
 ---
 
 **Project Status**: 🚧 In Active Development  
-**Current Phase**: Phase 1 - Technical architecture documentation 
-**Last Updated**: November 24, 2025  
-**Days Completed**: +5 of 20  
+**Current Phase**: Phase 2 - Data Layer & Core Apps (Submission Portal Complete)  
+**Last Updated**: November 28, 2025  
+**Days Completed**: 9 of 20  
 **Estimated Completion**: December 14, 2025
