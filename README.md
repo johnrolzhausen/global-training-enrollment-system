@@ -520,17 +520,41 @@ DirectQuery ensures executives always see real-time data without manual refreshe
 
 ### Design System Implementation (App.Formulas Theme)
 
-**Decision:** Centralized color palette using App.Formulas instead of inline RGBA values.
+**Decision:** Centralized color palette using App.OnStart instead of inline RGBA values.
 
-**Implementation:**
+### Theme System: Why Collection-Based in Solutions?
+
+**Decision:** Theme stored in collection (colTheme) accessed via LookUp, rather than App.Formulas or App.OnStart variables.
+
+**Why:**
+Canvas apps within solutions use delayed loading for performance - variables set in App.OnStart don't initialize until first screen renders. Collections are the exception - they load immediately during startup.
+
+**Issue Encountered:**
+Published app showed black backgrounds despite Theme object working perfectly in edit mode. App.Formulas and Set() variables were timing out.
+
+**Solution:**
 ```powerfx
-Theme = {
-    Primary: RGBA(0,120,212,1),
-    PrimaryLight: ColorFade(RGBA(0,120,212,1), 60%),
-    TextPrimary: RGBA(40,40,40,1),
-    Success: RGBA(0,165,95,1),
-    // ... full theme system
-}
+// App.OnStart
+ClearCollect(colTheme, 
+    {Name: "Primary", Color: RGBA(0,120,212,1)},
+    // ... all theme colors
+);
+
+// App.Formulas
+GetThemeColor(ColorName:Text):Color=LookUp(colTheme, Name = ColorName).Color;
+
+// Usage in controls
+Fill = GetThemeColor("Primary")
+```
+
+**Benefits:**
+- Guaranteed initialization before first screen renders
+- Single source of truth for brand colors
+- Works reliably in managed solutions and published apps
+- Enterprise-grade pattern used in ALM scenarios
+
+**Learning:**
+This is a real-world difference between development/edit mode vs published/production apps. Collections behave differently in the app lifecycle - a critical insight for professional Power Apps development.
 ```
 
 **Benefits:**
