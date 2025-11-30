@@ -352,6 +352,20 @@ An integrated Power Platform solution that transforms enrollment data collection
 - Center comparison views
 - Capacity utilization analysis
 
+### Accessibility Considerations
+
+**WCAG 2.1 Level AA compliance addressed:**
+- All interactive controls have descriptive AccessibleLabel properties
+- Labels describe both control type and purpose
+- Dynamic labels reflect control state (enabled/disabled)
+- Screen reader users can navigate the full workflow
+
+**Remaining work (documented for production):**
+- Gallery item accessibility (individual row navigation)
+- Keyboard shortcuts for common actions
+- High contrast theme support
+- Focus indicators for keyboard navigation
+
 ---
 
 ## 📁 Project Structure
@@ -454,9 +468,11 @@ This portfolio project demonstrates proficiency in:
 - ✅ Submission workflows (Submit and Save Draft functionality)
 - ✅ SharePoint CRUD operations (ForAll/Patch with complex lookup formats)
 - ✅ End-to-end testing with multiple user personas
-- 🔲 Basic validation and submission workflows
-- 🔲 Initial Power Automate flows (email notifications)
-- 🔲 Unit testing and debugging
+- ✅ Basic validation and submission workflows
+- ✅ Unit testing and debugging
+- ✅ Initial Power Automate flows (email notifications)
+  - Submission confirmation email to coordinators
+  - New submission alert to data quality analyst
 - 🔲 Data Quality Dashboard development
 - 🔲 Administrator Console development
 
@@ -600,6 +616,41 @@ Implemented via `varActualType` context variable set during submission, consumed
 
 *Detailed rationale for all architectural decisions documented in `/docs/05-pain-points-and-lessons-learned.md`*
 
+### Email Notification Strategy
+
+**Decision:** Automated email notifications via Power Automate for submission confirmation and analyst alerts.
+
+**Implementation:**
+Two event-driven flows trigger on SharePoint list item changes:
+
+1. **Submission Confirmation Flow**
+   - Trigger: Item created/modified in tbl_VolumeSubmissions
+   - Condition: Status = "Submitted"
+   - Action: Send HTML email to coordinator with submission details
+   - Includes: Submission ID, country, month, date, next steps
+
+2. **Analyst Alert Flow**
+   - Trigger: Same as above
+   - Action: Alert data quality analyst (Alice Katt) of new submission
+   - Includes: Submission details plus IsEstimate flag for prioritization
+
+**Technical Details:**
+- SharePoint trigger: "When an item is created or modified"
+- Conditional logic filters to Status = "Submitted" only
+- Get item action retrieves country name via lookup
+- DateTime formatting via formatDateTime() expression
+- HTML email templates with inline CSS for consistent branding
+
+**Why Automated Notifications:**
+- Reduces coordinator anxiety (immediate confirmation)
+- Enables proactive analyst workflow (no manual checking)
+- Provides audit trail (email receipts)
+- Supports async work (coordinators can submit anytime)
+- Scalable pattern (add more recipients/conditions easily)
+
+**Time Investment:**
+Two flows built and tested in ~3 hours, demonstrating Power Automate proficiency alongside Power Apps development.
+
 ---
 
 ## 🤝 Contributing
@@ -652,6 +703,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   - ForAll/Patch integration with SharePoint
   - IsEstimate functionality with conditional validation
   - End-to-end tested with multiple personas
+- **v0.3.5** (November 29, 2025) - Power Automate notification flows complete
+  - Submission confirmation email to coordinators
+  - New submission alert to analyst
+  - HTML email templates with professional styling
+  - DateTime formatting for user-friendly display
+  - Complete end-to-end submission workflow with automation
 - **v0.4.0** (Target: Week 3) - Integration and automation complete
 - **v1.0.0** (Target: Week 4) - Full solution with analytics and documentation
 
@@ -679,7 +736,7 @@ This redesign addresses the specific failures of the previous implementation:
 ---
 
 **Project Status**: 🚧 In Active Development  
-**Current Phase**: Phase 2 - Data Layer & Core Apps (Submission Portal Complete)  
-**Last Updated**: November 28, 2025  
+**Current Phase**: Phase 2 - Data Layer & Core Apps (Complete)  
+**Last Updated**: November 30, 2025  
 **Days Completed**: 9 of 20  
 **Estimated Completion**: December 14, 2025
