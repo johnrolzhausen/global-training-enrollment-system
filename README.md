@@ -473,19 +473,27 @@ This portfolio project demonstrates proficiency in:
 - ✅ Initial Power Automate flows (email notifications)
   - Submission confirmation email to coordinators
   - New submission alert to data quality analyst
+
+### Phase 3: Analytics & Polish (Week 3)
+- ✅ Connected Power BI to 4 SharePoint lists via SharePoint Online List connector
+- ✅ Cleaned and transformed data in Power Query (removed metadata, expanded lookups)
+- ✅ Built star schema with proper Many-to-One relationships
+- ✅ Created comprehensive DateTable with fiscal year support (Oct-Sep)
+- ✅ Converted text-based SubmissionMonth to date for relationship to DateTable
+- ✅ Implemented 17 foundational DAX measures (volumes, variances, time intelligence)
+- ✅ Tested time intelligence functions (PARALLELPERIOD for MoM/YoY calculations)
+- 🔲 Day 2: Executive Summary page
+- 🔲 Day 3: Geographic & Test Type Analysis pages
+- 🔲 Day 4: Trend Analysis & Publish to Service
+- 🔲 Day 5: Documentation & Screenshots
+
+### Phase 4: Data Quality & Integration (Week 3)
 - 🔲 Data Quality Dashboard development
 - 🔲 Administrator Console development
-
-### Phase 3: Data Quality & Integration (Week 3)
 - 🔲 Email processing automation flows
 - 🔲 Anomaly detection logic
 - 🔲 Advanced notification workflows
 - 🔲 Integration testing across apps and flows
-
-### Phase 4: Analytics & Polish (Week 4)
-- 🔲 Power BI data model development
-- 🔲 Dashboard design and visualization
-- 🔲 DAX measures and calculations
 - 🔲 UI/UX refinement across all apps
 - 🔲 Performance optimization
 - 🔲 Documentation completion
@@ -694,23 +702,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Version History
 - **v0.1.0** (November 19, 2025) - Initial repository setup and documentation framework
-- **v0.2.0** (November 20, 2025) - Requirements and design phase complete
-- **v0.25.0** (November 22, 2025) - SharePoint data layer complete (9 lists, full schema)
-- **v0.3.0** (November 28, 2025) - Submission Portal complete (3 screens, full CRUD operations)
-  - Welcome screen with user selection
-  - Dynamic submission form with scrollable gallery
-  - Confirmation screen with submission details
-  - ForAll/Patch integration with SharePoint
-  - IsEstimate functionality with conditional validation
-  - End-to-end tested with multiple personas
-- **v0.3.5** (November 29, 2025) - Power Automate notification flows complete
-  - Submission confirmation email to coordinators
-  - New submission alert to analyst
-  - HTML email templates with professional styling
-  - DateTime formatting for user-friendly display
-  - Complete end-to-end submission workflow with automation
-- **v0.4.0** (Target: Week 3) - Integration and automation complete
-- **v1.0.0** (Target: Week 4) - Full solution with analytics and documentation
+- **v0.2.0** (November 22, 2025) - Requirements and design phase complete
+- **v0.3.0** (November 27, 2025) - Submission Portal and automation flows complete
+- **v0.3.5** (November 30, 2025) - Submission History screen shell added
+- **v0.4.0** (December 1, 2025) - Power BI data foundation complete (Day 1 of Week 3)
+- **v0.5.0** (Target: December 5, 2025) - Power BI dashboard complete
+- **v1.0.0** (Target: December 14, 2025) - Full solution with final documentation
 
 ### What's Different from the Original System
 This redesign addresses the specific failures of the previous implementation:
@@ -736,7 +733,7 @@ This redesign addresses the specific failures of the previous implementation:
 ---
 
 **Project Status**: 🚧 In Active Development  
-**Current Phase**: Phase 2 - Data Layer & Core Apps (Complete)  
-**Last Updated**: November 30, 2025  
-**Days Completed**: 9 of 20  
+**Current Phase**: Phase 3 - Power BI Dashboard (Week 3, Day 1 Complete)  
+**Last Updated**: December 1, 2025  
+**Days Completed**: 11 of 20  
 **Estimated Completion**: December 14, 2025
