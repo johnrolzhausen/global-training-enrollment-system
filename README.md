@@ -307,10 +307,33 @@ An integrated Power Platform solution that transforms enrollment data collection
 
 ---
 
+## 📊 Power BI Dashboard  ← ADD THIS NEW SECTION HERE
+
+View the Power BI dashboard file: **[GTE_Dashboard_v2.pbix](power-bi/GTE_Dashboard_v2.pbix)**
+
+### Dashboard Pages:
+- ✅ **Executive Summary** - KPIs, trends, top countries, YoY growth
+- 🚧 **Geographic Analysis** - Map visual, regional drill-down (In Progress)
+- 🚧 **Test Type Analysis** - Course performance metrics (Planned)
+
+See [dashboard documentation](power-bi/dashboard-documentation.md) for technical details.
+
+### Quick Stats (Week 3, Day 2):
+- **138 records** of realistic test data (2024-2025)
+- **17 DAX measures** including time intelligence calculations
+- **Star schema** with 4 interconnected tables
+- **Interactive filtering** with year slicer
+- **YoY Growth:** 2.2% | **Performance vs Budget:** -0.3%
+
+![Executive Summary Dashboard](power-bi/screenshots/executive-summary-page-final.png)
+
+---
+
+
 ## 📸 Screenshots
 
 *Screenshots will be added progressively as development proceeds*
-
+### Power Apps 
 ### Enrollment Submission Portal (Week 2 - Complete)
 
 **Screen 1: Welcome & User Selection**
@@ -346,7 +369,10 @@ An integrated Power Platform solution that transforms enrollment data collection
 - System monitoring
 
 ### Power BI Dashboard
-- Executive summary page
+**Executive Summary Page**
+![Executive Summary Dashboard](power-bi/screenshots/executive-summary-page-final.png)
+*Interactive dashboard with YoY growth analysis, seasonal trend visualization, and dynamic year filtering*
+
 - Geographic enrollment analysis
 - Course performance trends
 - Center comparison views
