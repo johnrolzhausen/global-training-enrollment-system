@@ -307,7 +307,7 @@ An integrated Power Platform solution that transforms enrollment data collection
 
 ---
 
-## 📊 Power BI Dashboard  ← ADD THIS NEW SECTION HERE
+## 📊 Power BI Dashboard
 
 View the Power BI dashboard file: **[GTE_Dashboard_v2.pbix](power-bi/GTE_Dashboard_v2.pbix)**
 
