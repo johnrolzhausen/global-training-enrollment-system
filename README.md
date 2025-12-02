@@ -307,25 +307,38 @@ An integrated Power Platform solution that transforms enrollment data collection
 
 ---
 
-## 📊 Power BI Dashboard
+## 📊 Power BI Dashboard Progress
 
-View the Power BI dashboard file: **[GTE_Dashboard_v1.pbix](power-bi/GTE_Dashboard_v1.pbix)**
+### Completed Pages
+1. **Executive Summary** ✅
+   - 4 KPI cards (Total Enrollments, YoY Growth, Avg/Country, Completion Rate)
+   - Monthly trend line chart with year-over-year comparison
+   - Top 5 countries bar chart
+   - Budget variance gauge
+   - Year slicer for filtering
+   
+2. **Geographic Analysis** ✅
+   - Azure Maps visualization with proportional bubbles
+   - Hierarchical matrix (Region → Country drill-down)
+   - Conditional formatting for variance performance
+   - 3 regional KPI cards (Asia Pacific, Western Europe, North America)
+   - Regional comparison bar chart (Actual vs Budget)
+   - Year slicer integration
 
-### Dashboard Pages:
-- ✅ **Executive Summary** - KPIs, trends, top countries, YoY growth
-- 🚧 **Geographic Analysis** - Map visual, regional drill-down (In Progress)
-- 🚧 **Test Type Analysis** - Course performance metrics (Planned)
+### Technical Achievements
+- Star schema data model with proper relationships
+- 17 DAX measures including time intelligence calculations
+- Custom Power Automate CSV import flow (138 records)
+- Azure Maps integration (upgraded from deprecated Bing Maps)
+- Conditional formatting with background color rules
+- Cross-visual filtering and drill-down capabilities
+- Professional color schemes (blue/orange contrast)
 
-See [dashboard documentation](power-bi/dashboard-documentation.md) for technical details.
-
-### Quick Stats (Week 3, Day 2):
-- **138 records** of realistic test data (2024-2025)
-- **17 DAX measures** including time intelligence calculations
-- **Star schema** with 4 interconnected tables
-- **Interactive filtering** with year slicer
-- **YoY Growth:** 2.2% | **Performance vs Budget:** -0.3%
-
-![Executive Summary Dashboard](power-bi/screenshots/executive-summary-page-final.png)
+### Data Foundation
+- DateTable with fiscal year support (Oct-Sep)
+- Fact table: tbl_VolumeSubmissions (138 records, 3 countries, 5 test types)
+- Dimension tables: Countries, Regions, TestTypes
+- Time period: 2024-2025 (24 months)
 
 ---
 
@@ -373,7 +386,10 @@ See [dashboard documentation](power-bi/dashboard-documentation.md) for technical
 ![Executive Summary Dashboard](power-bi/screenshots/executive-summary-page-final.png)
 *Interactive dashboard with YoY growth analysis, seasonal trend visualization, and dynamic year filtering*
 
-- Geographic enrollment analysis
+**Geographic Analysis**
+![Geographic Analysis Dashboard](power-bi/screenshots/geographic-analysis-page-final.png)
+*Interactive dashboard with Enrollments by Country Azure map, Regional Matrix, Actual vs. Budget comparison and dynamic year filtering*
+
 - Course performance trends
 - Center comparison views
 - Capacity utilization analysis
@@ -508,8 +524,8 @@ This portfolio project demonstrates proficiency in:
 - ✅ Converted text-based SubmissionMonth to date for relationship to DateTable
 - ✅ Implemented 17 foundational DAX measures (volumes, variances, time intelligence)
 - ✅ Tested time intelligence functions (PARALLELPERIOD for MoM/YoY calculations)
-- 🔲 Day 2: Executive Summary page
-- 🔲 Day 3: Geographic & Test Type Analysis pages
+- ✅ Day 2: Executive Summary page
+- ✅ Day 3: Geographic & Test Type Analysis pages
 - 🔲 Day 4: Trend Analysis & Publish to Service
 - 🔲 Day 5: Documentation & Screenshots
 
@@ -760,6 +776,6 @@ This redesign addresses the specific failures of the previous implementation:
 
 **Project Status**: 🚧 In Active Development  
 **Current Phase**: Phase 3 - Power BI Dashboard (Week 3, Day 1 Complete)  
-**Last Updated**: December 1, 2025  
-**Days Completed**: 11 of 20  
+**Last Updated**: December 2, 2025  
+**Days Completed**: 13 of 20  
 **Estimated Completion**: December 14, 2025
