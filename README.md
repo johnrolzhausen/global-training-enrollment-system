@@ -394,6 +394,10 @@ An integrated Power Platform solution that transforms enrollment data collection
 ![Trend Analysis Dashboard](power-bi/screenshots/trend-analysis-final.png)
 *Interactive dashboard with Enrollments by Country Azure map, Regional Matrix, Actual vs. Budget comparison and dynamic year filtering*
 
+**Test Type Analysis**
+![Test Type Analysis Dashboard](power-bi/screenshots/test-type-analysis-final.png)
+*Interactive dashboard with Enrollments by Country Azure map, Regional Matrix, Actual vs. Budget comparison and dynamic year filtering*
+
 
 ### Accessibility Considerations
 
@@ -514,8 +518,8 @@ This portfolio project demonstrates proficiency in:
 - ✅ Basic validation and submission workflows
 - ✅ Unit testing and debugging
 - ✅ Initial Power Automate flows (email notifications)
-  - Submission confirmation email to coordinators
-  - New submission alert to data quality analyst
+- ✅ Submission confirmation email to coordinators
+- ✅ New submission alert to data quality analyst
 
 ### Phase 3: Analytics & Polish (Week 3)
 - ✅ Connected Power BI to 4 SharePoint lists via SharePoint Online List connector
@@ -528,7 +532,7 @@ This portfolio project demonstrates proficiency in:
 - ✅ Executive Summary page
 - ✅ Geographic Analysis pages
 - ✅ Trend Analysis
-- 🔲 Test Type Analysis
+- ✅ Test Type Analysis
 - 🔲 Data Quality Scorecard
 - 🔲 Final polish and alignment across all pages
 - 🔲 Publish to Power BI Service 
