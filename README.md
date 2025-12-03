@@ -390,9 +390,10 @@ An integrated Power Platform solution that transforms enrollment data collection
 ![Geographic Analysis Dashboard](power-bi/screenshots/geographic-analysis-page-final.png)
 *Interactive dashboard with Enrollments by Country Azure map, Regional Matrix, Actual vs. Budget comparison and dynamic year filtering*
 
-- Course performance trends
-- Center comparison views
-- Capacity utilization analysis
+**Trend Analysis**
+![Trend Analysis Dashboard](power-bi/screenshots/trend-analysis-final.png)
+*Interactive dashboard with Enrollments by Country Azure map, Regional Matrix, Actual vs. Budget comparison and dynamic year filtering*
+
 
 ### Accessibility Considerations
 
