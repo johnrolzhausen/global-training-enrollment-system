@@ -395,7 +395,7 @@ An integrated Power Platform solution that transforms enrollment data collection
 *Interactive dashboard with Enrollments by Country Azure map, Regional Matrix, Actual vs. Budget comparison and dynamic year filtering*
 
 **Test Type Analysis**
-![Test Type Analysis Dashboard](power-bi/screenshots/test-type-analysis-final.png)
+![Test Type Analysis Dashboard](power-bi/screenshots/test_type_analysis_final.png)
 *Interactive dashboard with Enrollments by Country Azure map, Regional Matrix, Actual vs. Budget comparison and dynamic year filtering*
 
 
