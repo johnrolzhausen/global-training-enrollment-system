@@ -350,27 +350,42 @@ An integrated Power Platform solution that transforms enrollment data collection
 ### Enrollment Submission Portal (Week 2 - Complete)
 
 **Screen 1: Welcome & User Selection**
-![Welcome Screen](power-apps/screenshots/01-welcome-screen.png)
+![Welcome Screen](power-apps/screenshots/01-GTE_SubmissionPortal/01-welcome-screen.png)
 *Modern card-based design with user dropdown filtered to active coordinators*
 
 **Screen 2: Submission Form**
-![Submission Form](power-apps/screenshots/02-submission-form.png)
+![Submission Form](power-apps/screenshots/01-GTE_SubmissionPortal/02-submission-form.png)
 *Dynamic test type loading with three-column volume entry (Actual, Budget, Forecast)*
 
-![Submission Form - Estimate Section](power-apps/screenshots/02b-submission-form-estimate.png)
+![Submission Form - Estimate Section](power-apps/screenshots/01-GTE_SubmissionPortal/02b-submission-form-estimate.png)
 *Conditional estimate reason field with validation*
 
 **Screen 3: Confirmation**
-![Confirmation Screen](power-apps/screenshots/03-confirmation-screen.png)
+![Confirmation Screen](power-apps/screenshots/01-GTE_SubmissionPortal/03-confirmation-screen.png)
 *Success confirmation with complete submission details and next steps*
 
 **SharePoint Integration**
 ![SharePoint Data](power-apps/screenshots/04-sharepoint-data.png)
-![SharePoint Data](power-apps/screenshots/04b-sharepoint-data.png)
+![SharePoint Data](power-apps/screenshots/01-GTE_SubmissionPortal/04b-sharepoint-data.png)
 *Successful data writes to tbl_VolumeSubmissions with proper lookup formatting*
 
+### Data Quality Dashboard (Week 4 - In Progress)
+
+**Submission Tracking Screen**
+
+**Overview: Full Submission List**
+![Submission Tracking Overview](power-apps/screenshots/02_GTE_DataQuality/01-submission-tracking-overview.png)
+*Complete analyst dashboard with 4 dynamic filters, KPI summary cards (138 Submitted, 0 Flagged, 0 Pending, 0 Validated), professional pagination, and data-driven status legend. Shows 5 items per page with "Page 1 of 28" navigation.*
+
+**Filtered View: Country Selection**
+![Submission Tracking Filtered](power-apps/screenshots/02_GTE_DataQuality/02-submission-tracking-filtered.png)
+*Dynamic filtering in action - Japan selected showing 23 submissions with updated KPI counts and pagination (Page 1 of 5). Demonstrates cascading filter logic with real-time collection updates.*
+
+**Pagination: Edge Case Handling**
+![Submission Tracking Pagination](power-apps/screenshots/02_GTE_DataQuality/03-submission-tracking-pagination.png)
+*Last page pagination showing exact remainder calculation (3 items on final page). Custom formula prevents item duplication: LastN(collection, Total - (CompletedPages × ItemsPerPage))*
+
 ### Data Quality Dashboard
-- Submission tracking overview
 - Anomaly detection interface
 - Validation workflow
 - Communication tools
@@ -906,7 +921,68 @@ This portfolio project demonstrates proficiency in:
 
 **Dashboard Complete:** 4 pages | 17 visualizations | 19+ DAX measures | Star schema data model | Production-ready
 
-### Phase 4: Data Quality & Integration (Week 3)
+---
+### **Phase 4: Internal Apps & Advanced Workflows** ⏳ In Progress
+
+**Timeline:** Week 4 (December 5-11, 2025)  
+**Status:** 🔄 25% Complete (1 of 4 screens done)
+
+#### **Week 4 Day 1: Submission Tracking Screen** ✅ COMPLETE
+**Date:** December 5, 2025
+
+Built the Data Quality Analyst's main dashboard - the "command center" for monitoring all country submissions and managing validation workflows.
+
+**Features Delivered:**
+- ✅ **Dynamic Filtering System** - 4 cascading filters (Country, Test Type, Month, Status) with "All" options and instant Reset
+- ✅ **KPI Summary Cards** - 4 status cards (Submitted: 138, Flagged: 0, Pending: 0, Validated: 0) with semantic color coding
+- ✅ **Professional Pagination** - Custom implementation handling edge cases (5 items per page, "Page X of Y" display)
+- ✅ **Status Legend** - Data-driven gallery from colStatusPalette collection, 7 status types with color indicators
+- ✅ **Action Buttons** - "Review Flagged Items" and "Export Report" for analyst workflows
+- ✅ **Submissions Gallery** - Two-line format showing Country | Test | Month | Status with View links
+
+**Technical Achievements:**
+- 🏗️ **Centralized Logic Pattern** - Hidden btn_ResetCollection with Select() pattern (DRY principle)
+- 🎨 **Data-Driven Design** - Status legend rendered from collection (scalable, maintainable)
+- 🔧 **Reusable Functions** - GetStatusColor() function for consistent theming
+- 🐛 **Edge Case Handling** - Custom last-page pagination formula to prevent item duplication
+- 📊 **Dynamic Calculations** - Filter counts and page totals update in real-time
+
+**Key Learning Outcomes:**
+- Advanced gallery pagination with FirstN/LastN slicing
+- Conditional formula logic for edge cases
+- Collection-based UI rendering patterns
+- Hidden button pattern for code reuse
+- Independent problem-solving (pagination bug derived and fixed)
+
+**Files:** scr_SubmissionTracking, colStatusPalette, GetStatusColor()  
+**Time Invested:** 4-5 hours  
+**Code Quality:** Production-ready ✅
+
+#### **Week 4 Remaining Work** ⏳
+
+**Day 2: Submission Detail Screen** (Planned)
+- Full submission display with metadata
+- Historical comparison (vs prior month, vs budget)
+- Data quality flags section
+- Validation workflow (Approve/Flag/Request Clarification)
+- Analyst notes and navigation
+
+**Day 3: Advanced Power Automate Workflows** (Planned)
+- Automated reminder system (5/2/0 days before deadline)
+- Escalation workflow (overdue notifications)
+- Anomaly alert flow (high-severity flags)
+- Weekly status digest email
+- TM1 export ready notification
+
+**Day 4: Integration Testing & Polish** (Planned)
+- End-to-end scenario testing
+- Cross-app navigation validation
+- Documentation completion
+- Final screenshots and video demo
+
+**Estimated Completion:** December 11, 2025
+
+### Phase 4: Data Quality & Integration (Week 4)
 - 🔲 Data Quality Dashboard development
 - 🔲 Administrator Console development
 - 🔲 Email processing automation flows
@@ -1151,9 +1227,9 @@ This redesign addresses the specific failures of the previous implementation:
 
 ---
 
-**Project Status**: ✅ Week 3 Complete - Power BI Dashboard Production-Ready  
+**Project Status**: ✅ Week 4 Day 1 Complete - Power BI Dashboard Production-Ready  
 **Current Phase**: Phase 4 - Power Automate Workflows (Starting Week 4)  
 **Completion**: 75% Complete (3 of 4 phases done)  
-**Last Updated**: December 3, 2025  
-**Days Completed**: 13 of 20  
+**Last Updated**: December 5, 2025  
+**Days Completed**: 16 of 25 
 **Target Completion**: December 14, 2025
