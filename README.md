@@ -375,15 +375,19 @@ An integrated Power Platform solution that transforms enrollment data collection
 
 **Overview: Full Submission List**
 ![Submission Tracking Overview](power-apps/screenshots/02_GTE_DataQuality/01-submission-tracking-overview.png)
-*Complete analyst dashboard with 4 dynamic filters, KPI summary cards (138 Submitted, 0 Flagged, 0 Pending, 0 Validated), professional pagination, and data-driven status legend. Shows 5 items per page with "Page 1 of 28" navigation.*
+*Complete analyst dashboard with 4 dynamic filters, KPI summary cards (5 Submitted, 1 Flagged, 0 Pending, 132 Approved), professional pagination, and data-driven status legend. Shows 5 items per page with "Page 1 of 28" navigation. Toggle provided to allow users to filter out Approved Items*
 
 **Filtered View: Country Selection**
 ![Submission Tracking Filtered](power-apps/screenshots/02_GTE_DataQuality/02-submission-tracking-filtered.png)
-*Dynamic filtering in action - Japan selected showing 23 submissions with updated KPI counts and pagination (Page 1 of 5). Demonstrates cascading filter logic with real-time collection updates.*
+*Dynamic filtering in action - Japan selected showing 1 flagged item and 22 approvals with updated KPI counts and pagination (Page 1 of 5). Demonstrates cascading filter logic with real-time collection updates.*
 
 **Pagination: Edge Case Handling**
 ![Submission Tracking Pagination](power-apps/screenshots/02_GTE_DataQuality/03-submission-tracking-pagination.png)
 *Last page pagination showing exact remainder calculation (3 items on final page). Custom formula prevents item duplication: LastN(collection, Total - (CompletedPages × ItemsPerPage))*
+
+**Toggle: Hide Approved Items**
+![Submission Tracking Pagination](power-apps/screenshots/02_GTE_DataQuality/04-submission-tracking-approvals-hidden.png)
+*Complete analyst dashboard with toggle checked to hide Approved items, KPI summary cards (0 Submitted, 1 Flagged, 0 Pending, 0 Approved)*
 
 ### Data Quality Dashboard
 - Anomaly detection interface
