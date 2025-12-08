@@ -439,34 +439,54 @@ An integrated Power Platform solution that transforms enrollment data collection
 
 ```
 global-training-enrollment-system/
-├── docs/                                    # Project documentation
-│   ├── 01-project-overview.md               # Business case and objectives
-│   ├── 02-requirements.md                   # Functional and technical requirements
-│   ├── 03-data-model.md                     # Entity relationships and schemas
-│   ├── 04-user-stories.md                   # Use cases and acceptance criteria
-│   └── 05-pain-points-and-lessons-learned.md # Original problem and design decisions
-│   └── 06-future-enhancements.md            # Parking lot items for future enhancement
-├── power-apps/                              # Canvas app documentation
-│   ├── screenshots/                         # UI screenshots & wireframes
-│   ├── wireframes/                          # UI wireframes
-│   │   ├── wireframes-admin_console.pptx    # Admin Console app
-│   │   ├── wireframes-dataquality-portal.pptx # Data Quality Portal app 
-│   │   └── wireframes-submission-portal.pptx  # Submission Portal app  
-│   └── app-documentation.md                 # Design decisions and formulas
-├── power-automate/                          # Flow documentation
-│   ├── flow-diagrams/                       # Visual workflow diagrams
-│   └── flow-documentation.md                # Flow logic and error handling
-├── power-bi/                                # Dashboard documentation
-│   ├── screenshots/                         # Dashboard visuals
-│   └── dashboard-documentation.md           # Data model and DAX measures
-├── sharepoint/                              # Data layer documentation
-│   ├── screenshots/                         # UI screenshots & wireframes
-│   │   ├── tbl_Countries.png                # Country Listing
-│   │   ├── tbl_CountryTestTypes.png         # Junction Table Country to Test types 
-│   │   ├── tbl_VolumeSubmissions            # Volume Submission Fact table 
-│   │   └── tbl_VolumeSubmissions (2)        # Volume Submission Fact table 
-│   └── list-schemas.md                      # List structures and relationships
-└── README.md                                # This file
+├── docs/                                                 # Project documentation
+│   ├── 01-project-overview.md                            # Business case and objectives
+│   ├── 02-requirements.md                                # Functional and technical requirements
+│   ├── 03-data-model.md                                  # Entity relationships and schemas
+│   ├── 04-user-stories.md                                # Use cases and acceptance criteria
+│   └── 05-pain-points-and-lessons-learned.md             # Original problem and design decisions
+│   └── 06-future-enhancements.md                         # Parking lot items for future enhancement
+├── power-apps/                                           # Canvas app documentation
+│   ├── screenshots/01-GTE_SubmissionPortal               # UI screenshots - Submission Portal
+│   │   ├── 01-welcome-screen.png                         # Submission portal Welcome Screen
+│   │   ├── 02-submission-form.png                        # Submission portal Submission Form
+│   │   ├── 02b-submission-form-estimate.png              # Submission portal Submission Form (Estimates)
+│   │   ├── 03-confirmation-screen.png                    # Submission portal Confirmation Screen
+│   │   ├── 04-sharepoint-data.png                        # SharePoint data updated with Submission data
+│   │   ├── 04b-sharepoint-data.png                       # SharePoint data updated with Submission data
+│   ├── screenshots/01-GTE_DataQuality                    # UI screenshots - Submission Portal
+│   │   ├── 01-submission-tracking-overview.png           # Submission tracking screen overview
+│   │   ├── 02-submission-tracking-filtered.png           # Submission tracking screen filtered view
+│   │   ├── 03-submission-tracking-pagination.png         # Submission tracking screen pagination
+│   │   ├── 04-submission-tracking-approvals-hidden.png   # Submission tracking screen approvals filteredout
+│   ├── wireframes/                                       # UI wireframes
+│   │   ├── wireframes-admin_console.pptx                 # Admin Console app
+│   │   ├── wireframes-dataquality-portal.pptx            # Data Quality Portal app 
+│   │   └── wireframes-submission-portal.pptx             # Submission Portal app  
+│   └── app-documentation.md                              # Design decisions and formulas
+├── power-automate/                                       # Flow documentation
+│   ├── screenshots/                                      # Visual workflow visuals
+│   └── flow-documentation.md                             # Flow logic and error handling
+├── power-bi/                                             # Dashboard documentation
+│   ├── desktop files/                                    # Power BI Desktop Historical versions
+│   │   ├── GTE_Dashboard_v1.pbix                         # Executive Summary Screen Complete
+│   │   ├── GTE_Dashboard_v2.pbix                         # Geographic Analysis Screen Complete
+│   │   ├── GTE_Dashboard_v3.pbix                         # Trend Analysis Screen Complete
+│   │   ├── GTE_Dashboard_v4_Final.pbix                   # Test Type Analysis Screen and Final Dashboard Complete
+│   ├── screenshots/                                      # Dashboard visuals
+│   │   ├── 01-executive-summary-final.png                # Executive Summary Screen
+│   │   ├── 02-geographic-analysis-final.png              # Geographic Analysis Screen
+│   │   ├── 03-trend-analysis-final.png                   # Trend Analysis Screen
+│   │   ├── 04-test-type-analysis-final.png               # Test Type Analysis Screen
+│   └── dashboard-documentation.md                        # Data model and DAX measures
+├── sharepoint/                                           # Data layer documentation
+│   ├── screenshots/                                      # UI screenshots & wireframes
+│   │   ├── tbl_Countries.png                             # Country Listing
+│   │   ├── tbl_CountryTestTypes.png                      # Junction Table Country to Test types 
+│   │   ├── tbl_VolumeSubmissions                         # Volume Submission Fact table 
+│   │   └── tbl_VolumeSubmissions (2)                     # Volume Submission Fact table 
+│   └── list-schemas.md                                   # List structures and relationships
+└── README.md                                             # This file
 ```
 
 ---
