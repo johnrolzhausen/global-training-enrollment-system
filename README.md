@@ -307,39 +307,125 @@ An integrated Power Platform solution that transforms enrollment data collection
 
 ---
 
-## 📊 Power BI Dashboard Progress
+## 📊 Power BI Dashboard - Complete
 
-### Completed Pages
+### All 6 Pages Complete ✅
+
+**Executive & Operational Dashboards:**
+
 1. **Executive Summary** ✅
-   - 4 KPI cards (Total Enrollments, YoY Growth, Avg/Country, Completion Rate)
-   - Monthly trend line chart with year-over-year comparison
-   - Top 5 countries bar chart
-   - Budget variance gauge
-   - Year slicer for filtering
+   - 4 KPI cards (63K Total Actual, 62K Budget, 7.1% YoY Growth, 100.3% Budget Attainment)
+   - Monthly trend line chart (Actual vs Budget vs Forecast)
+   - Top 5 countries bar chart with data labels
+   - Performance vs budget gauge visualization
+   - Year slicer for time filtering
    
 2. **Geographic Analysis** ✅
-   - Azure Maps visualization with proportional bubbles
+   - Azure Maps visualization with proportional country bubbles
    - Hierarchical matrix (Region → Country drill-down)
-   - Conditional formatting for variance performance
+   - Conditional formatting for variance performance (green/red backgrounds)
    - 3 regional KPI cards (Asia Pacific, Western Europe, North America)
    - Regional comparison bar chart (Actual vs Budget)
-   - Year slicer integration
+   - Interactive cross-filtering
+
+3. **Trend Analysis** ✅
+   - 24-month combo chart (Actual bars + Budget/Forecast lines)
+   - Variance trend with conditional formatting
+   - YoY Growth KPI card with semantic coloring
+   - Edit interactions configured for context awareness
+   - Seasonal pattern identification
+
+4. **Test Type Analysis** ✅
+   - Side-by-side column chart (Actual vs Budget by test type)
+   - Market share donut chart with percentages
+   - 24-month trend lines for all 6 test types
+   - Performance matrix with conditional formatting
+   - Product portfolio health insights
+
+5. **Data Quality Monitoring** ✅
+   - Executive section: 4 KPI cards (Total Flags, Open Flags, Resolved This Month, Quality Score)
+   - Flags by Type (donut chart with data labels)
+   - Flags by Severity (column chart with color coding: Red/Orange/Yellow)
+   - Quality Issues Trend (line chart showing 6-month pattern)
+   - Operational section: Issues by Country (bar chart)
+   - Resolution Time by Flag Type (column chart showing days to resolve)
+   - Dual-audience design (executive summary + analyst details)
+
+6. **Flag Review Workbench** ✅
+   - Analyst-focused operational page
+   - 2 KPI cards (Open Flags, Data Quality Score)
+   - 3 filter slicers (Flag Type, Severity, Status with checkboxes)
+   - Clear All Filters button
+   - Detailed table with 7 columns (Date, Country, Test, Flag Type, Severity, Description, Status)
+   - Conditional formatting on Severity column (Red/Orange/Yellow backgrounds)
+   - Default filter: Status = "Open" (shows work queue)
+   - Sorted by FlaggedDate descending (newest first)
+
+### Data Model Architecture
+
+**Star schema with 6 tables:**
+- **Fact Table:** tbl_VolumeSubmissions (central transactional data)
+- **Dimension Tables:** tbl_Countries, tbl_Regions, tbl_TestTypes, DateTable
+- **Extension Table:** tbl_DataQualityFlags (validation workflow tracking)
+- **Measures Table:** 25+ DAX calculations organized in dedicated table
+
+![Data Model](power-bi/screenshots/07-data-model-relationships.png)
+
+**Key Features:**
+- DateTable enables time intelligence (YoY, MoM, fiscal year calculations)
+- Normalized structure prevents data redundancy
+- One-to-many relationships enforce referential integrity
+- tbl_DataQualityFlags added Week 3 for validation tracking
+- Scalable design supports future extensions
 
 ### Technical Achievements
-- Star schema data model with proper relationships
-- 17 DAX measures including time intelligence calculations
-- Custom Power Automate CSV import flow (138 records)
-- Azure Maps integration (upgraded from deprecated Bing Maps)
-- Conditional formatting with background color rules
+
+**Data Modeling:**
+- Star schema with proper Many-to-One relationships
+- Custom DateTable with fiscal year support (Oct-Sep)
+- tbl_DataQualityFlags integration (13 flags, 5 validation types)
+- Power Query transformations for all 6 tables
+
+**DAX Measures (25+ total):**
+- Volume calculations: Total Actual/Budget/Forecast Volumes
+- Time intelligence: YoY Growth %, MoM Growth %, Prior Year comparisons
+- Variance analysis: Budget Attainment %, Variance Amount/Percentage
+- Data quality: Total Flags, Open Flags, Avg Resolution Time (Days), Data Quality Score %
+- Temporal calculations: Flags Resolved This Month, Flags This Month
+- Supporting: Approved Submissions, Submission Count, Rankings
+
+**Advanced Techniques:**
+- Manual date calculations (YEAR/MONTH/DATE/EOMONTH) for measure compatibility
+- Conditional formatting with background colors (4 severity types)
+- Edit interactions configuration for context-aware filtering
 - Cross-visual filtering and drill-down capabilities
-- Professional color schemes (blue/orange contrast)
+- Hierarchical drill-down (Region → Country)
 
-### Data Foundation
-- DateTable with fiscal year support (Oct-Sep)
-- Fact table: tbl_VolumeSubmissions (138 records, 3 countries, 5 test types)
-- Dimension tables: Countries, Regions, TestTypes
-- Time period: 2024-2025 (24 months)
+**Visualizations (30+ across 6 pages):**
+- KPI cards (16 total across all pages)
+- Column charts (8) with data labels
+- Line charts (5) with markers and smooth lines
+- Donut charts (2) with percentage labels
+- Bar charts (4) with data labels
+- Matrix (1) with hierarchical drill-down
+- Gauge (1) with performance zones
+- Azure Maps (1) with proportional bubbles
 
+### Business Insights Delivered
+
+**Performance Metrics:**
+- Overall: 100.3% budget attainment, 7.1% YoY growth
+- Geographic: Korea leads with 18K volumes (29% of total)
+- Product: Leadership Fundamentals dominates (38% market share)
+- Quality: 93.3% quality score, 9 flags requiring attention
+
+**Operational Intelligence:**
+- Budget variance issues average 5 days to resolve
+- Anomaly detection catching issues proactively
+- Late submission tracking shows compliance patterns
+- Zero volumes identified for demand analysis
+
+**Portfolio Complete:** 6 pages | 30+ visualizations | 25+ DAX measures | Star schema | Production-ready ✅
 ---
 
 
@@ -402,21 +488,36 @@ An integrated Power Platform solution that transforms enrollment data collection
 
 ### Power BI Dashboard
 
-**Executive Summary Page**
-![Executive Summary Dashboard](power-bi/screenshots/01-executive-summary-final.png)
-*Executive scorecard with 4 key KPIs (Total Actual/Budget Volumes, YoY Growth 2.2%, Budget Attainment 99.7%), 11-month trend visualization, Top 5 countries bar chart, and performance vs budget gauge with dynamic year filtering*
+**Six comprehensive pages provide insights for multiple stakeholder groups:**
 
-**Geographic Analysis**
-![Geographic Analysis Dashboard](power-bi/screenshots/02-geographic-analysis-final.png)
-*Interactive dashboard with Azure Maps showing enrollment distribution by country (proportional bubble sizing), hierarchical matrix with Region → Country drill-down, regional performance cards (Asia Pacific 22.1K, Western Europe 15.3K, North America 7.5K), and Actual vs Budget comparison chart with conditional formatting on variance*
+1. **Executive Summary** - High-level KPIs and performance overview
+   ![Executive Summary](power-bi/screenshots/01-executive-summary-final.png)
+   *Scorecard with 4 KPIs, 11-month trend, Top 5 countries, performance gauge*
 
-**Trend Analysis**
-![Trend Analysis Dashboard](power-bi/screenshots/03-trend-analysis-final.png)
-*24-month performance analysis with combo chart (Actual bars + Budget line), variance trend visualization using green/red conditional formatting to highlight positive/negative performance, YoY Growth KPI card (2.2%), and edit interactions configured to maintain full time series context regardless of year filter selection*
+2. **Geographic Analysis** - Regional and country-level breakdowns
+   ![Geographic Analysis](power-bi/screenshots/02-geographic-analysis-final.png)
+   *Azure Maps with proportional bubbles, hierarchical matrix, regional KPI cards*
 
-**Test Type Analysis**
-![Test Type Analysis Dashboard](power-bi/screenshots/04-test-type-analysis-final.png)
-*Product portfolio dashboard showing test type performance with side-by-side Actual vs Budget column chart, market share donut chart (Leadership Fundamentals 38.09%, Project Management 20.83%, etc.), 24-month trend lines for all 6 test types, and performance summary matrix with conditional formatting on variance and YoY growth metrics*
+3. **Trend Analysis** - Time-based patterns and growth tracking
+   ![Trend Analysis](power-bi/screenshots/03-trend-analysis-final.png)
+   *24-month combo chart, variance trend with conditional formatting, YoY growth*
+
+4. **Test Type Analysis** - Product portfolio performance
+   ![Test Type Analysis](power-bi/screenshots/04-test-type-analysis-final.png)
+   *Side-by-side Actual vs Budget, market share donut, 24-month trend lines*
+
+5. **Data Quality Monitoring** - Executive health check and operational metrics
+   ![Data Quality Monitoring](power-bi/screenshots/05-data-quality-monitoring.png)
+   *Dual-audience design: Executive KPIs + flags analysis + resolution metrics*
+
+6. **Flag Review Workbench** - Analyst operational page
+   ![Flag Review Workbench](power-bi/screenshots/06-flag-review-workbench.png)
+   *Focused workspace with filtering, detailed table, conditional formatting*
+
+**Data Model Architecture:**
+
+![Data Model Relationships](power-bi/screenshots/07-data-model-relationships.png)
+*Star schema with VolumeSubmissions fact table, dimension tables (Countries, Regions, TestTypes, DateTable), and DataQualityFlags extension*
 
 
 ### Accessibility Considerations
@@ -918,6 +1019,106 @@ This portfolio project demonstrates proficiency in:
 - Performance matrix: Summary table with conditional formatting on Variance and YoY % columns
 - **Business Value:** Product portfolio insights - answers "Which tests drive our business?"
 
+**Page 5: Data Quality Monitoring** *(Day 6)*
+- **Connected tbl_DataQualityFlags** to existing Power BI model
+- **Power Query cleanup:** Removed unnecessary columns, expanded lookups (SubmissionID), expanded choice columns (FlagType, Severity, Status)
+- **Relationship created:** tbl_DataQualityFlags[SubmissionID_ID] → tbl_VolumeSubmissions[ID] (Many-to-One)
+- **6 new DAX measures:**
+```
+  Total Flags = COUNTROWS(tbl_DataQualityFlags)
+  Open Flags = CALCULATE(COUNTROWS(...), Status = "Open")
+  Flags Resolved This Month = Manual date calc (YEAR/MONTH/DATE)
+  Avg Resolution Time (Days) = AVERAGEX with DATEDIFF
+  Data Quality Score % = (Total - Flagged) / Total
+  Flags This Month = Similar structure to Resolved
+```
+- **DAX Challenge Solved:** TODAY()/STARTOFMONTH() in CALCULATE filter context caused "function used in True/False expression" error. Solution: Manual date calculations using YEAR(NOW()), MONTH(NOW()), DATE(), EOMONTH() in variables before CALCULATE.
+
+**Executive Section (Top Half):**
+- Row 1: 4 KPI cards (Total Flags: 13, Open Flags: 9, Resolved This Month: 1, Quality Score: 93.3%)
+- Row 2: Three visuals with professional polish
+  - Flags by Type (donut) - Data labels with percentages, no legend
+  - Flags by Severity (column) - Red/Orange/Yellow color coding, data labels, sorted High→Medium→Low
+  - Quality Issues Trend (line) - 6-month pattern, thicker line (width: 3), data point markers
+
+**Operational Section (Bottom Half):**
+- Row 3: Issues by Country (bar chart showing Korea: 5, Germany: 3, Italy: 2)
+- Row 3: Resolution Time by Flag Type (column chart - Budget: 5 days, Anomaly: 3 days, Missing: 2, Late: 1)
+
+**Design Optimizations:**
+- Removed all legends (cleaner, modern look with direct data labels)
+- No gridlines on severity chart (minimal clutter)
+- Thicker line weight on trend chart (more visible)
+- All visual borders turned off (modern aesthetic)
+- Consistent title formatting (12pt bold) across all visuals
+- **Business Value:** Dual-audience design - executives get health check, analysts see operational metrics
+
+**Page 6: Flag Review Workbench** *(Day 7)*
+- **Analyst-focused operational page** with clear workflow guidance
+- **Subtitle added:** "Review and manage data quality flags. Use filters on the left to find specific issues." (positioned horizontally next to title to save vertical space)
+- **2 KPI cards:** Open Flags (9 in orange), Data Quality Score (93.3% in teal)
+  - Removed "Total Flags" card per design decision (redundant for analyst workflow)
+- **3 Filter Slicers (left panel):**
+  - FlagType: Checkboxes for all 5 types (Anomaly_High, Budget_Variance, Missing_Forecast, Zero_Volumes, Late_Submission)
+  - Severity: Checkboxes with High/Medium/Low
+  - Status: Checkboxes with Open/Dismissed/Resolved (default: Open only)
+  - Date slicer intentionally omitted (analysts want ALL open flags, sorted newest first)
+- **Clear All Filters button:** Professional workflow reset
+- **Detailed Table (right side, 1060px × 560px):**
+  - 7 columns: FlaggedDate, Country, Test Type, FlagType, Severity, Description, Status
+  - **Conditional formatting on Severity:** High=Red background/white text, Medium=Orange/white, Low=Yellow/black
+  - Default sort: FlaggedDate descending (newest flags first)
+  - Default filter: Status = "Open" (shows analyst's work queue)
+  - Column widths manually optimized (Description widest at ~35% for full text visibility)
+  - Dark blue headers, alternating row colors, no borders (modern table design)
+
+**Context-Appropriate Design Decision:**
+- Main "Data Quality Monitoring" page: No subtitle (executives don't need instructions)
+- "Flag Review Workbench" page: Subtitle included (guides analyst workflow)
+- This selective application demonstrates intentional UX design, not template application
+
+**Interview Talking Point:**
+> "I separated data quality monitoring into two pages following the context-appropriate design pattern. The first page provides executives with a health check—KPIs and trends without overwhelming details. The second page is an operational workbench for analysts, with comprehensive filtering and a detailed table showing every flag requiring attention. The Severity column uses conditional formatting for instant recognition—High flags are red, Medium orange, Low yellow. The default view shows only open items sorted newest-first, so analysts immediately see their work queue. This dual-page approach ensures each audience gets exactly what they need without clutter."
+
+#### Polish & Optimization (Day 7)
+- ✅ Removed legends from Data Quality Monitoring donut chart (cleaner, modern aesthetic with direct labels)
+- ✅ Added data labels to all charts (no hunting for values)
+- ✅ Optimized Severity sort order (High → Medium → Low)
+- ✅ Cleaned up axes (removed unnecessary gridlines, titles)
+- ✅ Consistent visual formatting across both quality pages
+- ✅ Verified conditional formatting displays correctly
+- ✅ Tested all slicers and filters
+- ✅ Captured 7 production screenshots (Desktop full-screen mode, F11)
+
+#### Technical Achievements Summary
+- **6 complete dashboard pages** with 30+ visualizations
+- **Star schema data model** with 6 tables and proper relationships
+- **25+ DAX measures** including advanced time intelligence
+- **Azure Maps integration** for geographic analysis
+- **Conditional formatting** on 4+ visuals for instant insights
+- **Dual-audience UX design** (executive summary vs analyst workbench pattern)
+- **Production-ready output** with professional polish
+
+#### Business Value Delivered
+**For Executives (Pages 1-5):**
+- 30-second performance health check (KPIs + trends)
+- Geographic visibility (which countries need attention)
+- Portfolio insights (which tests drive the business)
+- Data quality confidence (93.3% clean submissions)
+
+**For Analysts (Page 6):**
+- Focused work queue (9 open flags requiring review)
+- Efficient filtering (find specific issues in seconds)
+- Resolution metrics (know which flag types take longest)
+- Complete context (all details in one table)
+
+**For Finance Team (All Pages):**
+- Real-time data (no waiting for month-end batch)
+- Interactive exploration (drill down from summary to detail)
+- Variance analysis (Actual vs Budget vs Forecast)
+- Trend identification (seasonality, growth patterns)
+
+**Week 3 Complete:** Power BI dashboard fully operational with 6 pages serving multiple stakeholder groups ✅
 #### Polish & Finalization (Day 5)
 - ✅ Cross-page consistency review: Colors, fonts, spacing verified across all 4 pages
 - ✅ Design system applied: Blue #004C97 (Actual), Orange #F2A900 (Budget), Green (positive), Red (negative)
@@ -946,13 +1147,25 @@ This portfolio project demonstrates proficiency in:
 **Dashboard Complete:** 4 pages | 17 visualizations | 19+ DAX measures | Star schema data model | Production-ready
 
 ---
-### **Phase 4: Internal Apps & Advanced Workflows** ⏳ In Progress
+### **Phase 4: Final Polish & Documentation** ⏳ In Progress
 
-**Timeline:** Week 4 (December 5-11, 2025)  
-**Status:** 🔄 25% Complete (1 of 4 screens done)
+**Timeline:** Week 4 (December 12-20, 2025)  
+**Status:** 🔄 60% Complete (Documentation in progress)
 
-#### **Week 4 Day 1: Submission Tracking Screen** ✅ COMPLETE
-**Date:** December 5, 2025
+#### **Completed This Week:**
+- ✅ **Power BI Data Quality Pages** (December 17)
+  - Page 5: Data Quality Monitoring (executive + operational views)
+  - Page 6: Flag Review Workbench (analyst workspace)
+  - 6 new DAX measures for flag tracking
+  - Conditional formatting and professional polish
+  - 3 screenshots captured (pages 5, 6, data model)
+
+#### **Remaining Work:**
+- 🔲 Power Apps Screen 4: Submission History (1-2 days)
+- 🔲 Power Automate: Data Quality Monitoring Flow (scheduled validation)
+- 🔲 Final documentation polish and README completion
+- 🔲 Video demonstration recording (optional)
+- 🔲 Final testing and deployment preparation
 
 Built the Data Quality Analyst's main dashboard - the "command center" for monitoring all country submissions and managing validation workflows.
 
@@ -1226,7 +1439,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **v0.3.5** (November 30, 2025) - Submission History screen shell added
 - **v0.4.0** (December 1, 2025) - Power BI data foundation complete (Day 1 of Week 3)
 - **v0.5.0** (December 3, 2025) - Power BI dashboard complete
-- **v1.0.0** (Target: December 14, 2025) - Full solution with final documentation
+- **v0.6.0** (December 17, 2025) - Power BI dashboard complete with 6 pages including Data Quality Monitoring and Flag Review Workbench
+- **v1.0.0** (Target: December 31, 2025) - Full solution with final documentation
 
 ### What's Different from the Original System
 This redesign addresses the specific failures of the previous implementation:
@@ -1251,9 +1465,9 @@ This redesign addresses the specific failures of the previous implementation:
 
 ---
 
-**Project Status**: ✅ Week 4 Day 1 Complete - Power BI Dashboard Production-Ready  
-**Current Phase**: Phase 4 - Power Automate Workflows (Starting Week 4)  
-**Completion**: 75% Complete (3 of 4 phases done)  
-**Last Updated**: December 5, 2025  
-**Days Completed**: 16 of 25 
-**Target Completion**: December 14, 2025
+**Project Status**: ✅ Week 3 Complete - Power BI Dashboard Production-Ready (6 Pages)  
+**Current Phase**: Phase 4 - Final Documentation & Screen 4 Completion  
+**Completion**: 85% Complete (Week 3 finished, Week 4 in progress)  
+**Last Updated**: December 17, 2025  
+**Days Completed**: 17 of 20  
+**Target Completion**: December 20, 2025
