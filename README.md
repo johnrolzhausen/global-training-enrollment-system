@@ -433,7 +433,7 @@ An integrated Power Platform solution that transforms enrollment data collection
 
 *Screenshots will be added progressively as development proceeds*
 ### Power Apps 
-### Enrollment Submission Portal (Week 2 - Complete)
+### Enrollment Submission Portal (Weeks 2-4 - Complete)
 
 **Screen 1: Welcome & User Selection**
 ![Welcome Screen](power-apps/screenshots/01-GTE_SubmissionPortal/01-welcome-screen.png)
@@ -451,9 +451,31 @@ An integrated Power Platform solution that transforms enrollment data collection
 *Success confirmation with complete submission details and next steps*
 
 **SharePoint Integration**
-![SharePoint Data](power-apps/screenshots/04-sharepoint-data.png)
-![SharePoint Data](power-apps/screenshots/01-GTE_SubmissionPortal/04b-sharepoint-data.png)
-*Successful data writes to tbl_VolumeSubmissions with proper lookup formatting*
+![SharePoint Data - Volume Columns](power-apps/screenshots/01-GTE_SubmissionPortal/04-sharepoint-data.png)
+*Volume data properly stored with lookup relationships to Countries and TestTypes*
+
+![SharePoint Data - Status View](power-apps/screenshots/01-GTE_SubmissionPortal/04b-sharepoint-data-status.png)
+*Successful data writes to tbl_VolumeSubmissions with status tracking and submission metadata*
+
+**Screen 4: Submission History**
+![Submission History - Default View](power-apps/screenshots/01-GTE_SubmissionPortal/05-submission-history-default.png)
+*Full-row clickable pattern with status circles, smart filters, and pagination (showing 1-8 of 23 submissions)*
+
+![Submission History - Validated Filter](power-apps/screenshots/01-GTE_SubmissionPortal/06-submission-history-validated.png)
+*Filtered view showing only validated submissions with green status indicators*
+
+![Submission History - Flagged Items](power-apps/screenshots/01-GTE_SubmissionPortal/07-submission-history-flagged.png)
+*Flagged submissions with red status circles and contextual Resolve action buttons*
+
+**Screen 5: Submission Detail**
+![Submission Detail - Validated Clean](power-apps/screenshots/01-GTE_SubmissionPortal/08-submission-detail-validated-clean.png)
+*Validated submission with variance calculations, validation information, and "No quality issues" confirmation*
+
+![Submission Detail - Flagged Issues](power-apps/screenshots/01-GTE_SubmissionPortal/09-submission-detail-flagged.png)
+*Flagged submission displaying data quality issues with severity-based color coding and detailed descriptions*
+
+![Submission Detail - Edit Mode](power-apps/screenshots/01-GTE_SubmissionPortal/10-submission-detail-edit-draft.png)
+*Inline editing workflow for draft completion - contextual form preserves visibility of submission details*
 
 ### Data Quality Dashboard (Week 4 - In Progress)
 
@@ -554,7 +576,14 @@ global-training-enrollment-system/
 │   │   ├── 02b-submission-form-estimate.png              # Submission portal Submission Form (Estimates)
 │   │   ├── 03-confirmation-screen.png                    # Submission portal Confirmation Screen
 │   │   ├── 04-sharepoint-data.png                        # SharePoint data updated with Submission data
-│   │   ├── 04b-sharepoint-data.png                       # SharePoint data updated with Submission data
+│   │   ├── 04b-sharepoint-data-status.png                # SharePoint data updated with Submission data
+│   │   ├── 05-submission-history-default.png             # Submission history screen - default view (all statuses)
+│   │   ├── 06-submission-history-validated.png           # Submission history screen - filtered to validated only
+│   │   ├── 07-submission-history-flagged.png             # Submission history screen - flagged items with resolve actions
+│   │   ├── 08-submission-detail-validated-clean.png      # Submission detail - validated with no quality issues
+│   │   ├── 09-submission-detail-flagged.png              # Submission detail - flagged with quality issues displayed
+│   │   ├── 10-submission-detail-edit-draft.png           # Submission detail - inline edit mode for draft completion
+│   │   └── 11-submission-detail-edit-resolve.png (TODO)  # Submission detail - inline edit mode for issue resolution
 │   ├── screenshots/01-GTE_DataQuality                    # UI screenshots - Submission Portal
 │   │   ├── 01-submission-tracking-overview.png           # Submission tracking screen overview
 │   │   ├── 02-submission-tracking-filtered.png           # Submission tracking screen filtered view
