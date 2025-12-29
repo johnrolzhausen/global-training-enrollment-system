@@ -52,6 +52,16 @@ An integrated Power Platform solution that transforms enrollment data collection
 - **Submission History**: View past submissions and confirmation receipts
 - **Multi-Language Support**: Interface available in multiple languages for global accessibility
 
+### Submission Management (Canvas App - Coordinator)
+- **Submission History View**: Full-row clickable interface with status-based indicators (Draft, Submitted, Validated, Flagged)
+- **Smart Filtering**: Country and status filters with single-country users seeing locked selections
+- **Pagination**: Efficient navigation through large submission datasets with "Showing X-Y of Z" indicators
+- **Submission Detail**: Comprehensive view with variance calculations, validation information, and data quality flags
+- **Inline Editing**: Contextual form for draft completion and flagged issue resolution without navigation
+- **Variance Analytics**: Automated calculation of budget variance and forecast variance with color-coded indicators
+- **Status-Based Actions**: Different action buttons per workflow state (Finish, View, Download, Resolve)
+- **Audit Trail Preservation**: Updates maintain original submission metadata while tracking modifications
+
 ### Email Processing Automation (Power Automate)
 - **Shared Mailbox Monitoring**: Continuously scans for enrollment submission emails
 - **Attachment Extraction**: Automatically downloads Excel files from emails
@@ -602,12 +612,16 @@ global-training-enrollment-system/
 │   │   ├── GTE_Dashboard_v1.pbix                         # Executive Summary Screen Complete
 │   │   ├── GTE_Dashboard_v2.pbix                         # Geographic Analysis Screen Complete
 │   │   ├── GTE_Dashboard_v3.pbix                         # Trend Analysis Screen Complete
-│   │   ├── GTE_Dashboard_v4_Final.pbix                   # Test Type Analysis Screen and Final Dashboard Complete
+│   │   ├── GTE_Dashboard_v4.pbix                         # Test Type Analysis Screen Complete
+│   │   ├── GTE_Dashboard_v5_Final.pbix                   # Data Quality Screen, Flag Review Screen and Final Dashboard Complete
 │   ├── screenshots/                                      # Dashboard visuals
-│   │   ├── 01-executive-summary-final.png                # Executive Summary Screen
-│   │   ├── 02-geographic-analysis-final.png              # Geographic Analysis Screen
-│   │   ├── 03-trend-analysis-final.png                   # Trend Analysis Screen
-│   │   ├── 04-test-type-analysis-final.png               # Test Type Analysis Screen
+│   │   ├── 01-executive-summary-final.png                # Executive Summary Screen - KPIs and trend analysis
+│   │   ├── 02-geographic-analysis-final.png              # Geographic Analysis Screen - Azure Maps with drill-down
+│   │   ├── 03-trend-analysis-final.png                   # Trend Analysis Screen - 24-month view with variance trends
+│   │   ├── 04-test-type-analysis-final.png               # Test Type Analysis Screen - Performance and market share
+│   │   ├── 05-data-quality-monitoring.png                # Data Quality Monitoring Screen - Flags by type, severity, and country
+│   │   ├── 06-flag-review-workbench.png                  # Flag Review Workbench - Analyst workflow with detailed flag table
+│   │   ├── 07-data-model-relationships.png               # Data Model Relationships - Star schema with fact and dimension tables
 │   └── dashboard-documentation.md                        # Data model and DAX measures
 ├── sharepoint/                                           # Data layer documentation
 │   ├── screenshots/                                      # UI screenshots & wireframes
@@ -660,608 +674,57 @@ This portfolio project demonstrates proficiency in:
 - **Scalability Planning**: Designing for growth and increased usage
 - **Change Management**: Considering user adoption and training needs
 
----
-
-## 🛠️ Development Approach
-
-### Phase 1: Planning & Design (Week 1) - ✅ COMPLETE
-
-**Final Status:** Complete documentation framework, data model, SharePoint schema, and wireframes ready for development
-
-#### Documentation & Requirements (Days 1-2)
-- ✅ Repository setup with professional structure (docs, power-apps, power-automate, power-bi, sharepoint directories)
-- ✅ Pain points analysis documenting 8-year history with original SQL-based system and failed email-based redesign
-- ✅ Lessons learned from fragile Excel submission process:
-  - Password-protected files requiring manual intervention
-  - Format variations breaking Power BI refreshes
-  - 3+ hours monthly consolidation time
-  - Late submissions forcing repeated manual work
-- ✅ Requirements document (REQ-101 through REQ-2208) covering:
-  - Functional requirements for 3 Power Apps (submission portal, data quality dashboard, admin console)
-  - Non-functional requirements (performance, security, usability)
-  - Business rules and validation logic
-  - Integration requirements (TM1 export, email notifications, Azure AD)
-- ✅ User stories for 6 personas with acceptance criteria:
-  - Country coordinators (Ji-Won Kim, Marie Dubois, Yuki Tanaka)
-  - Data quality analyst (John Rolzhausen)
-  - CFO (Robert Chen)
-  - Volume entry analyst (Alice Katt)
-
-#### Data Model Design (Days 3-4)
-- ✅ Logical data model: 13 entities with complete ERD diagrams
-- ✅ Star schema design: VolumeSubmissions (fact) → Countries, TestTypes, DateTable (dimensions)
-- ✅ Normalization to 3NF to eliminate redundancy
-- ✅ Audit trail pattern: Submission_History capturing all changes
-- ✅ Soft delete pattern: IsDeleted flag instead of physical deletion
-- ✅ Temporal data pattern: EffectiveDate/EndDate tracking for historical accuracy
-- ✅ SharePoint physical schema specification for 9 lists:
-  - Master data: tbl_Regions (5 rows), tbl_Countries (6 rows), tbl_TestTypes (6 rows)
-  - Relationships: tbl_CountryTestTypes (junction), tbl_UserCountries (assignments)
-  - Transactions: tbl_VolumeSubmissions (core fact table)
-  - Supporting: tbl_SubmissionHistory (audit trail), tbl_DataQualityFlags, tbl_SystemConfig
-
-#### SharePoint Implementation (Day 5)
-- ✅ **9 SharePoint lists created** with complete column definitions:
-  - 100+ total columns across all lists
-  - Lookup relationships configured (Countries → Regions, Submissions → Countries/TestTypes)
-  - Validation rules applied (format checks, range constraints, required fields)
-  - Indexed columns for query performance (Status, SubmissionMonth, IsDeleted)
-  - Choice columns for standardized data entry
-- ✅ **35 sample records loaded** across all lists for testing:
-  - 5 regions with codes (APAC, WE, NA, EE, LATAM)
-  - 6 countries with timezone offsets and TM1 mappings
-  - 6 test types with categories and effective dates
-  - 12 country-test type combinations
-  - 5 user assignments with primary/backup flags
-  - 7 system configuration settings
-- ✅ Text field workaround for Person columns (single-user tenant constraint)
-- ✅ Email configuration with dedicated test Gmail accounts (security best practice)
-
-#### Design & Wireframes (Days 6-7)
-- ✅ **PowerPoint wireframe deck: 30 slides across 3 apps**
-- ✅ Submission Portal (11 screens):
-  - Welcome screen with user selection dropdown
-  - Country selection and test type loading
-  - Volume entry form with Actual/Budget/Forecast fields
-  - Draft save and validation workflows
-  - Confirmation screen with submission ID
-  - Historical submissions view
-- ✅ Data Quality Dashboard (conceptual):
-  - Real-time submission tracking
-  - Anomaly detection interface
-  - Validation workflow
-  - Manual entry capability
-- ✅ Administrator Console (conceptual):
-  - User management
-  - System configuration
-  - Reporting tools
-- ✅ Design system documented:
-  - Color palette (Primary Blue #004C97, Primary Orange #F2A900)
-  - Typography standards (headers, body text, captions)
-  - Component library (buttons, cards, forms)
-  - Layout grids and spacing rules
-
-#### Technical Architecture Documentation
-- ✅ Integration architecture: Power Apps ↔ SharePoint ↔ Power Automate ↔ Power BI
-- ✅ Security model: Role-based access control, Azure AD authentication
-- ✅ Data flow diagrams: Submission → Validation → Analytics pipeline
-- ✅ Error handling strategy: Graceful degradation, user feedback, retry logic
-- ✅ Performance considerations: Delegation-friendly formulas, indexed columns, query optimization
-
-#### Achievements & Statistics
-- **Documentation pages:** 50+ pages of requirements, data model, user stories, pain points
-- **SharePoint lists:** 9 lists, 100+ columns, proper relationships and validation
-- **Sample data:** 35 records across all lists for realistic testing
-- **Wireframe screens:** 30 slides, 11 detailed screens for submission portal
-- **Design system:** Complete color palette, typography, component standards
-- **Time invested:** 40 hours over 7 days (5-6 hours daily average)
-
----
-
-### Phase 2: Data Layer & Core Apps (Week 2) - ✅ COMPLETE
-
-**Final Status:** Functional submission portal with 3 screens, SharePoint CRUD operations, and automated email notifications
-
-#### SharePoint Foundation (Days 1-2)
-- ✅ Production SharePoint site created and configured
-- ✅ 9 lists built with complete column definitions (100+ total columns)
-- ✅ Relationships established:
-  - Countries → Regions (lookup with restrict delete)
-  - TestTypes → Categories (choice column)
-  - VolumeSubmissions → Countries (lookup)
-  - VolumeSubmissions → TestTypes (lookup)
-  - UserCountries → Countries (lookup for assignments)
-- ✅ Validation rules applied:
-  - SubmissionMonth format: YYYY-MM (e.g., "2025-11")
-  - Volume fields: Integer, >= 0
-  - Email fields: Valid email format
-  - Status fields: Choice from predefined list
-- ✅ Indexed columns configured for performance:
-  - VolumeSubmissions: SubmissionMonth, Status, IsDeleted
-  - Countries: CountryCode, Status
-  - TestTypes: TestTypeCode, Status
-- ✅ Sample data loaded (35 records):
-  - 6 countries with complete profiles
-  - 6 test types with TM1 mappings
-  - 12 active country-test type combinations
-  - 5 user assignments (coordinators and analysts)
-
-#### Power Apps Development (Days 3-6)
-
-**Enrollment Submission Portal - 3 Screen Application:**
-
-**Screen 1: Welcome & User Selection**
-- ✅ Welcome message with application purpose
-- ✅ User selection dropdown (simulates multi-user in single-user tenant)
-- ✅ 4 user personas available:
-  - Ji-Won Kim (Korea coordinator)
-  - Yuki Tanaka (Japan coordinator)
-  - Marie Dubois (France coordinator)
-  - Alice Chen (Data quality analyst)
-- ✅ "Continue" button with validation (must select user)
-- ✅ Theme colors applied (blue primary, white background)
-- ✅ Component-based design (reusable header, buttons)
-
-**Screen 2: Submission Form**
-- ✅ Dynamic country loading based on selected user
-- ✅ Test type dropdown filtered to country's active offerings (via tbl_CountryTestTypes junction table)
-- ✅ Month selector (YYYY-MM format dropdown)
-- ✅ Three volume input fields:
-  - Actual Volume (integer, >= 0)
-  - Budget Volume (integer, >= 0)
-  - Forecast Volume (integer, >= 0)
-- ✅ Real-time validation with error messages:
-  - Required field checks
-  - Format validation (numbers only)
-  - Range validation (no negative numbers)
-  - Duplicate submission check (same country/test/month)
-- ✅ Two action buttons:
-  - "Submit" - Final submission (Status: Submitted)
-  - "Save Draft" - Work in progress (Status: Draft)
-- ✅ Form reset after successful submission
-- ✅ Loading spinner during submission processing
-
-**Screen 3: Confirmation**
-- ✅ Success message with submission ID
-- ✅ Summary of submitted data:
-  - Country name
-  - Test type name
-  - Submission month
-  - Volume amounts (Actual, Budget, Forecast)
-  - Submission timestamp
-- ✅ "Submit Another" button (returns to Screen 2)
-- ✅ "View History" button (future enhancement placeholder)
-- ✅ Confirmation receipt (visual indicator of successful submission)
-
-#### SharePoint Integration & CRUD Operations
-
-**Complex ForAll/Patch Patterns Implemented:**
-- ✅ Lookup field creation: Text values → ID references
-  - Country name "Republic of Korea" → CountryID lookup to tbl_Countries
-  - Test type name "Leadership Fundamentals" → TestTypeID lookup to tbl_TestTypes
-- ✅ Multi-field patch with all metadata:
-  - Volume fields (Actual, Budget, Forecast)
-  - Status field (Draft or Submitted)
-  - Timestamps (SubmittedDate, LastModifiedDate)
-  - User fields (SubmittedByEmail, SubmittedByName)
-  - Audit fields (IsDeleted = No, IsEstimate = No)
-- ✅ Error handling with try-catch pattern:
-  - Successful submissions show confirmation screen
-  - Failures display error message with details
-  - Network issues handled gracefully
-- ✅ Draft vs Submit logic:
-  - Draft: Status = "Draft", no validation email sent
-  - Submit: Status = "Submitted", triggers confirmation email
-
-**Data Validation Before Submission:**
-- ✅ Duplicate detection: Check for existing submission with same Country/TestType/Month
-- ✅ Required field enforcement: All fields must have values
-- ✅ Format validation: Volumes must be positive integers
-- ✅ Lookup validation: Country and test type must exist in master lists
-- ✅ Authorization check: User must be assigned to country (via tbl_UserCountries)
-
-#### Power Automate Workflows (Days 6-7)
-
-**Flow 1: Submission Confirmation Email to Coordinator**
-- ✅ Trigger: When item created in tbl_VolumeSubmissions with Status = "Submitted"
-- ✅ Filter condition: Only process Submitted status (ignore Drafts)
-- ✅ HTML email template:
-  - Professional header with logo placeholder
-  - Submission details (Country, Test Type, Month, Volumes)
-  - Submission ID for tracking
-  - Timestamp (formatted for user's timezone)
-  - Footer with help desk contact
-- ✅ Dynamic recipient: SubmittedByEmail field from submission record
-- ✅ Email sent from: Tenant account (john@rolzhausen.com)
-- ✅ Cross-tenant capability: Emails successfully delivered to external Gmail addresses
-
-**Flow 2: New Submission Alert to Data Quality Analyst**
-- ✅ Trigger: When item created in tbl_VolumeSubmissions with Status = "Submitted"
-- ✅ Filter condition: Only process Submitted status (ignore Drafts)
-- ✅ HTML email template:
-  - Alert header indicating new submission requiring validation
-  - Submission details for review
-  - Link to SharePoint list item (placeholder for future Power Apps deep link)
-  - Priority flag if from country with history of issues
-- ✅ Dynamic recipient: alice.chen.demo@gmail.com (data quality analyst)
-- ✅ Notification includes:
-  - Country and test type
-  - Submitted by (user name and email)
-  - Volume amounts for quick anomaly check
-  - Submission timestamp
-
-**Email Configuration:**
-- ✅ Test Gmail accounts created for all personas:
-  - jiwon.kim.demo@gmail.com (Korea coordinator)
-  - yuki.tanaka.demo@gmail.com (Japan coordinator)
-  - marie.dubois.demo@gmail.com (France coordinator)
-  - alice.chen.demo@gmail.com (Data quality analyst)
-- ✅ Security consideration: Public GitHub repository uses dedicated test accounts (not personal/business emails)
-- ✅ Cross-tenant email working: M365 tenant → Gmail without restrictions
-- ✅ Production best practice documented: Use shared mailbox (EnrollmentNotifications@company.com) instead of personal account
-
-#### Testing & Validation (Days 7)
-
-**End-to-End Testing Scenarios:**
-- ✅ **Test 1: Ji-Won Kim submits Korea volumes**
-  - Selected user: Ji-Won Kim
-  - Country: Republic of Korea (auto-loaded)
-  - Test type: Leadership Fundamentals
-  - Month: 2025-11
-  - Volumes: Actual 1500, Budget 1450, Forecast 1525
-  - Result: ✅ Submission successful, confirmation email received, analyst notified
-
-- ✅ **Test 2: Marie Dubois submits France volumes**
-  - Selected user: Marie Dubois
-  - Country: France (auto-loaded)
-  - Test type: Project Management Cert Prep
-  - Month: 2025-11
-  - Volumes: Actual 800, Budget 850, Forecast 825
-  - Result: ✅ Submission successful, emails sent correctly
-
-- ✅ **Test 3: Save Draft functionality**
-  - Selected user: Yuki Tanaka
-  - Country: Japan
-  - Test type: Data Analytics Essentials
-  - Month: 2025-11
-  - Volumes: Actual 450, Budget 500, Forecast 475
-  - Action: Save Draft (not Submit)
-  - Result: ✅ Record created with Status = "Draft", NO emails sent
-
-- ✅ **Test 4: Duplicate submission prevention**
-  - Attempt to submit same Country/TestType/Month twice
-  - Result: ✅ Error message displayed, submission blocked
-
-- ✅ **Test 5: Validation error handling**
-  - Attempt submission with negative volume
-  - Attempt submission with missing required field
-  - Result: ✅ Clear error messages, submission prevented
-
-**Bug Fixes & Refinements:**
-- ✅ Fixed issue: Country dropdown not filtering correctly
-- ✅ Fixed issue: Test type lookup returning blank
-- ✅ Fixed issue: Confirmation screen not showing all details
-- ✅ Improved: Error messages more descriptive
-- ✅ Improved: Loading states for better UX
-- ✅ Improved: Form validation timing (real-time vs on submit)
-
-#### Technical Achievements
-
-**Power Apps Formula Complexity:**
-- ✅ Lookup translation formulas (text → ID references)
-- ✅ Filter formulas with multiple conditions
-- ✅ Delegation-friendly queries (staying within 500 record limit)
-- ✅ Collection management for dropdown population
-- ✅ Context variable usage for screen navigation
-- ✅ Error handling with If/IsBlank/IsError patterns
-
-**SharePoint Integration:**
-- ✅ CRUD operations (Create, Read, Update, Delete)
-- ✅ Complex Patch formulas with 15+ fields
-- ✅ Lookup column handling (ID-based relationships)
-- ✅ Choice column integration
-- ✅ Timestamp management (UTC to local conversion)
-
-**Power Automate Capabilities:**
-- ✅ SharePoint triggers with filter conditions
-- ✅ HTML email template design
-- ✅ Dynamic content insertion
-- ✅ Cross-tenant email delivery
-- ✅ Error handling and retry logic
-
-#### Achievements & Statistics
-- **Screens developed:** 3 fully functional screens with navigation
-- **SharePoint operations:** 9 lists with 100+ columns and relationships
-- **Test scenarios:** 5 comprehensive end-to-end tests
-- **Email templates:** 2 professional HTML templates
-- **Power Automate flows:** 2 working notification flows
-- **Test data:** 35 records for realistic multi-user simulation
-- **Lines of Power Apps formulas:** 500+ across all controls
-- **Time invested:** 40 hours over 7 days (5-6 hours daily average)
-
-#### Business Value Delivered
-- **For Country Coordinators:**
-  - Submit volumes in under 10 minutes (vs 30-45 min with Excel)
-  - Immediate confirmation (vs uncertainty of email receipt)
-  - No password management headaches
-  - No file corruption issues
-  - Mobile-responsive (can submit from any device)
-
-- **For Data Quality Analyst:**
-  - Real-time notification of submissions
-  - No manual file downloads or password removal
-  - Structured data (no format variations)
-  - Draft vs submitted visibility
-  - Audit trail automatically captured
-
-- **For Finance Leadership:**
-  - Data available immediately (no waiting for consolidation)
-  - Standardized format eliminates validation errors
-  - Foundation for real-time Power BI reporting
-
----
-
-### Phase 3: Analytics & Polish (Week 3) - ✅ COMPLETE
-
-**Final Status:** 4 dashboard pages completed, 17 visualizations, 19+ DAX measures, star schema data model, production-ready
-
-#### Data Foundation & Modeling (Days 1-2)
-- ✅ Connected Power BI to 4 SharePoint lists via SharePoint Online List connector
-- ✅ Cleaned and transformed data in Power Query (removed metadata columns, expanded lookup fields)
-- ✅ Built star schema with proper Many-to-One relationships (Countries, TestTypes, DateTable → VolumeSubmissions)
-- ✅ Created comprehensive DateTable with fiscal year support and proper month sorting
-- ✅ Converted text-based SubmissionMonth to date field for time-based relationships
-- ✅ Implemented 19+ foundational DAX measures including:
-  - Volume measures (Total Actual, Budget, Forecast Volumes)
-  - Variance measures (Variance Amount, Budget Attainment %)
-  - Growth measures (YoY Growth %, YoY Growth Amount with time intelligence)
-  - Supporting calculations (Previous Year comparisons, rankings, data freshness)
-
-#### Dashboard Pages Completed (Days 3-5)
-
-**Page 1: Executive Summary** *(Day 3)*
-- 4 KPI cards: Total Actual Volumes (45K), Total Budget Volumes (45K), YoY Growth (2.2% in green), Budget Attainment (99.7%)
-- 11-month trend chart: Actual vs Budget line visualization showing seasonal patterns
-- Top 5 Countries: Horizontal bar chart (Korea 17K, France 9K, United States 7K, Japan 5K, Germany 3K)
-- Performance gauge: Visual indicator of budget attainment with color zones
-- **Business Value:** 30-second executive health check - answers "How are we performing overall?"
-
-**Page 2: Geographic Analysis** *(Day 3)*
-- Azure Maps: Enrollment distribution with proportional bubble sizing by country
-- Hierarchical matrix: Region → Country drill-down with Actual, Budget, and Variance columns
-- Conditional formatting: Green background for positive variance (Korea +0.2%), red for negative
-- Regional KPI cards: Asia Pacific (22.1K), Western Europe (15.3K), North America (7.5K)
-- Regional comparison chart: Side-by-side blue (Actual) and orange (Budget) bars
-- **Business Value:** Geographic visibility - answers "Which regions/countries need attention?"
-
-**Page 3: Trend Analysis** *(Day 4)*
-- 24-month combo chart: Actual bars + Budget line showing Jan 2024 - Nov 2025 performance trajectory
-- Variance trend chart: Green/red bars with conditional formatting showing monthly performance vs budget
-- YoY Growth KPI card: 2.2% growth prominently displayed in green
-- Edit interactions configured: Trend charts always show full 24 months regardless of year filter
-- **Business Value:** Performance trajectory - answers "Are we improving? What are the patterns?"
-
-**Page 4: Test Type Analysis** *(Day 4)*
-- Column chart: Side-by-side Actual vs Budget for all 6 test types (Leadership dominates at 17.1K)
-- Donut chart: Market share visualization (Leadership 38.09%, PM Cert 20.83%, Executive 16.66%)
-- Multi-line chart: 24-month trends for all 6 tests showing seasonality and growth patterns
-- Performance matrix: Summary table with conditional formatting on Variance and YoY % columns
-- **Business Value:** Product portfolio insights - answers "Which tests drive our business?"
-
-**Page 5: Data Quality Monitoring** *(Day 6)*
-- **Connected tbl_DataQualityFlags** to existing Power BI model
-- **Power Query cleanup:** Removed unnecessary columns, expanded lookups (SubmissionID), expanded choice columns (FlagType, Severity, Status)
-- **Relationship created:** tbl_DataQualityFlags[SubmissionID_ID] → tbl_VolumeSubmissions[ID] (Many-to-One)
-- **6 new DAX measures:**
-```
-  Total Flags = COUNTROWS(tbl_DataQualityFlags)
-  Open Flags = CALCULATE(COUNTROWS(...), Status = "Open")
-  Flags Resolved This Month = Manual date calc (YEAR/MONTH/DATE)
-  Avg Resolution Time (Days) = AVERAGEX with DATEDIFF
-  Data Quality Score % = (Total - Flagged) / Total
-  Flags This Month = Similar structure to Resolved
-```
-- **DAX Challenge Solved:** TODAY()/STARTOFMONTH() in CALCULATE filter context caused "function used in True/False expression" error. Solution: Manual date calculations using YEAR(NOW()), MONTH(NOW()), DATE(), EOMONTH() in variables before CALCULATE.
-
-**Executive Section (Top Half):**
-- Row 1: 4 KPI cards (Total Flags: 13, Open Flags: 9, Resolved This Month: 1, Quality Score: 93.3%)
-- Row 2: Three visuals with professional polish
-  - Flags by Type (donut) - Data labels with percentages, no legend
-  - Flags by Severity (column) - Red/Orange/Yellow color coding, data labels, sorted High→Medium→Low
-  - Quality Issues Trend (line) - 6-month pattern, thicker line (width: 3), data point markers
-
-**Operational Section (Bottom Half):**
-- Row 3: Issues by Country (bar chart showing Korea: 5, Germany: 3, Italy: 2)
-- Row 3: Resolution Time by Flag Type (column chart - Budget: 5 days, Anomaly: 3 days, Missing: 2, Late: 1)
-
-**Design Optimizations:**
-- Removed all legends (cleaner, modern look with direct data labels)
-- No gridlines on severity chart (minimal clutter)
-- Thicker line weight on trend chart (more visible)
-- All visual borders turned off (modern aesthetic)
-- Consistent title formatting (12pt bold) across all visuals
-- **Business Value:** Dual-audience design - executives get health check, analysts see operational metrics
-
-**Page 6: Flag Review Workbench** *(Day 7)*
-- **Analyst-focused operational page** with clear workflow guidance
-- **Subtitle added:** "Review and manage data quality flags. Use filters on the left to find specific issues." (positioned horizontally next to title to save vertical space)
-- **2 KPI cards:** Open Flags (9 in orange), Data Quality Score (93.3% in teal)
-  - Removed "Total Flags" card per design decision (redundant for analyst workflow)
-- **3 Filter Slicers (left panel):**
-  - FlagType: Checkboxes for all 5 types (Anomaly_High, Budget_Variance, Missing_Forecast, Zero_Volumes, Late_Submission)
-  - Severity: Checkboxes with High/Medium/Low
-  - Status: Checkboxes with Open/Dismissed/Resolved (default: Open only)
-  - Date slicer intentionally omitted (analysts want ALL open flags, sorted newest first)
-- **Clear All Filters button:** Professional workflow reset
-- **Detailed Table (right side, 1060px × 560px):**
-  - 7 columns: FlaggedDate, Country, Test Type, FlagType, Severity, Description, Status
-  - **Conditional formatting on Severity:** High=Red background/white text, Medium=Orange/white, Low=Yellow/black
-  - Default sort: FlaggedDate descending (newest flags first)
-  - Default filter: Status = "Open" (shows analyst's work queue)
-  - Column widths manually optimized (Description widest at ~35% for full text visibility)
-  - Dark blue headers, alternating row colors, no borders (modern table design)
-
-**Context-Appropriate Design Decision:**
-- Main "Data Quality Monitoring" page: No subtitle (executives don't need instructions)
-- "Flag Review Workbench" page: Subtitle included (guides analyst workflow)
-- This selective application demonstrates intentional UX design, not template application
-
-**Interview Talking Point:**
-> "I separated data quality monitoring into two pages following the context-appropriate design pattern. The first page provides executives with a health check—KPIs and trends without overwhelming details. The second page is an operational workbench for analysts, with comprehensive filtering and a detailed table showing every flag requiring attention. The Severity column uses conditional formatting for instant recognition—High flags are red, Medium orange, Low yellow. The default view shows only open items sorted newest-first, so analysts immediately see their work queue. This dual-page approach ensures each audience gets exactly what they need without clutter."
-
-#### Polish & Optimization (Day 7)
-- ✅ Removed legends from Data Quality Monitoring donut chart (cleaner, modern aesthetic with direct labels)
-- ✅ Added data labels to all charts (no hunting for values)
-- ✅ Optimized Severity sort order (High → Medium → Low)
-- ✅ Cleaned up axes (removed unnecessary gridlines, titles)
-- ✅ Consistent visual formatting across both quality pages
-- ✅ Verified conditional formatting displays correctly
-- ✅ Tested all slicers and filters
-- ✅ Captured 7 production screenshots (Desktop full-screen mode, F11)
-
-#### Technical Achievements Summary
-- **6 complete dashboard pages** with 30+ visualizations
-- **Star schema data model** with 6 tables and proper relationships
-- **25+ DAX measures** including advanced time intelligence
-- **Azure Maps integration** for geographic analysis
-- **Conditional formatting** on 4+ visuals for instant insights
-- **Dual-audience UX design** (executive summary vs analyst workbench pattern)
-- **Production-ready output** with professional polish
-
-#### Business Value Delivered
-**For Executives (Pages 1-5):**
-- 30-second performance health check (KPIs + trends)
-- Geographic visibility (which countries need attention)
-- Portfolio insights (which tests drive the business)
-- Data quality confidence (93.3% clean submissions)
-
-**For Analysts (Page 6):**
-- Focused work queue (9 open flags requiring review)
-- Efficient filtering (find specific issues in seconds)
-- Resolution metrics (know which flag types take longest)
-- Complete context (all details in one table)
-
-**For Finance Team (All Pages):**
-- Real-time data (no waiting for month-end batch)
-- Interactive exploration (drill down from summary to detail)
-- Variance analysis (Actual vs Budget vs Forecast)
-- Trend identification (seasonality, growth patterns)
-
-**Week 3 Complete:** Power BI dashboard fully operational with 6 pages serving multiple stakeholder groups ✅
-#### Polish & Finalization (Day 5)
-- ✅ Cross-page consistency review: Colors, fonts, spacing verified across all 4 pages
-- ✅ Design system applied: Blue #004C97 (Actual), Orange #F2A900 (Budget), Green (positive), Red (negative)
-- ✅ Year slicer positioning standardized (top-right on all pages)
-- ✅ Edit interactions verified and corrected on Trend Analysis page
-- ✅ All 4 final screenshots captured with numbered naming convention (01- through 04-)
-- ✅ Production file saved: GTE_Dashboard_v4_FINAL.pbix
-
-#### Technical Achievements
-- **Star schema data model** with 4 tables and proper relationships
-- **19+ DAX measures** including time intelligence and variance calculations
-- **Azure Maps integration** with proportional bubble sizing
-- **Conditional formatting** (4 instances) for instant insight recognition
-- **Hierarchical drill-down** capabilities (Region → Country)
-- **Edit interactions** configured for context-aware filtering
-- **24-month time series** analysis with seasonal pattern identification
-
-#### Business Insights Delivered
-- Overall performance: 99.7% budget attainment, 2.2% YoY growth
-- Geographic concentration: Asia Pacific represents 49% of global volumes
-- Product dominance: Leadership Fundamentals accounts for 38% of business
-- Seasonality identified: Consistent summer dip (June-July) across all regions and test types
-- Portfolio health: All 6 test types growing (2.0%-2.5% YoY), no products requiring sunset
-- Single overperformer: Leadership Fundamentals only test beating budget (+40 volumes)
-
-**Dashboard Complete:** 4 pages | 17 visualizations | 19+ DAX measures | Star schema data model | Production-ready
-
----
-### **Phase 4: Final Polish & Documentation** ⏳ In Progress
-
-**Timeline:** Week 4 (December 12-20, 2025)  
-**Status:** 🔄 60% Complete (Documentation in progress)
-
-#### **Completed This Week:**
-- ✅ **Power BI Data Quality Pages** (December 17)
-  - Page 5: Data Quality Monitoring (executive + operational views)
-  - Page 6: Flag Review Workbench (analyst workspace)
-  - 6 new DAX measures for flag tracking
-  - Conditional formatting and professional polish
-  - 3 screenshots captured (pages 5, 6, data model)
-
-#### **Remaining Work:**
-- 🔲 Power Apps Screen 4: Submission History (1-2 days)
-- 🔲 Power Automate: Data Quality Monitoring Flow (scheduled validation)
-- 🔲 Final documentation polish and README completion
-- 🔲 Video demonstration recording (optional)
-- 🔲 Final testing and deployment preparation
-
-Built the Data Quality Analyst's main dashboard - the "command center" for monitoring all country submissions and managing validation workflows.
-
-**Features Delivered:**
-- ✅ **Dynamic Filtering System** - 4 cascading filters (Country, Test Type, Month, Status) with "All" options and instant Reset
-- ✅ **KPI Summary Cards** - 4 status cards (Submitted: 138, Flagged: 0, Pending: 0, Validated: 0) with semantic color coding
-- ✅ **Professional Pagination** - Custom implementation handling edge cases (5 items per page, "Page X of Y" display)
-- ✅ **Status Legend** - Data-driven gallery from colStatusPalette collection, 7 status types with color indicators
-- ✅ **Action Buttons** - "Review Flagged Items" and "Export Report" for analyst workflows
-- ✅ **Submissions Gallery** - Two-line format showing Country | Test | Month | Status with View links
-
-**Technical Achievements:**
-- 🏗️ **Centralized Logic Pattern** - Hidden btn_ResetCollection with Select() pattern (DRY principle)
-- 🎨 **Data-Driven Design** - Status legend rendered from collection (scalable, maintainable)
-- 🔧 **Reusable Functions** - GetStatusColor() function for consistent theming
-- 🐛 **Edge Case Handling** - Custom last-page pagination formula to prevent item duplication
-- 📊 **Dynamic Calculations** - Filter counts and page totals update in real-time
-
-**Key Learning Outcomes:**
-- Advanced gallery pagination with FirstN/LastN slicing
-- Conditional formula logic for edge cases
-- Collection-based UI rendering patterns
-- Hidden button pattern for code reuse
-- Independent problem-solving (pagination bug derived and fixed)
-
-**Files:** scr_SubmissionTracking, colStatusPalette, GetStatusColor()  
-**Time Invested:** 4-5 hours  
-**Code Quality:** Production-ready ✅
-
-#### **Week 4 Remaining Work** ⏳
-
-**Day 2: Submission Detail Screen** (Planned)
-- Full submission display with metadata
-- Historical comparison (vs prior month, vs budget)
-- Data quality flags section
-- Validation workflow (Approve/Flag/Request Clarification)
-- Analyst notes and navigation
-
-**Day 3: Advanced Power Automate Workflows** (Planned)
-- Automated reminder system (5/2/0 days before deadline)
-- Escalation workflow (overdue notifications)
-- Anomaly alert flow (high-severity flags)
-- Weekly status digest email
-- TM1 export ready notification
-
-**Day 4: Integration Testing & Polish** (Planned)
-- End-to-end scenario testing
-- Cross-app navigation validation
-- Documentation completion
-- Final screenshots and video demo
-
-**Estimated Completion:** December 11, 2025
-
-### Phase 4: Data Quality & Integration (Week 4)
-- 🔲 Data Quality Dashboard development
-- 🔲 Administrator Console development
-- 🔲 Email processing automation flows
-- 🔲 Anomaly detection logic
-- 🔲 Advanced notification workflows
-- 🔲 Integration testing across apps and flows
-- 🔲 UI/UX refinement across all apps
-- 🔲 Performance optimization
-- 🔲 Documentation completion
-- 🔲 Video demonstration recording
-- 🔲 Final testing and bug fixes
-
----
+---## 🛠️ Development Approach
+
+### Phase 1: Planning & Design (Week 1) ✅ COMPLETE
+- ✅ Repository setup and documentation framework
+- ✅ Pain points analysis and lessons learned documentation  
+- ✅ Detailed requirements gathering (150+ requirements across 9 categories)
+- ✅ Data model design with star schema and audit patterns
+- ✅ User story creation with acceptance criteria (18 stories mapped to requirements)
+- ✅ SharePoint schema design (9 lists, 100+ columns documented)
+- ✅ SharePoint lists creation with sample data (138 records across all lists)
+
+### Phase 2: Core Applications (Week 2) ✅ COMPLETE
+- ✅ Submission Portal Screens 1-3 (Welcome, Form, Confirmation)
+- ✅ Collection-based theme system (colTheme with GetThemeColor() function)
+- ✅ User simulation dropdown (single-user tenant workaround)
+- ✅ ForAll + Patch pattern for multi-row submissions
+- ✅ Choice and lookup column formatting (proper SharePoint syntax)
+- ✅ Power Automate confirmation flow (HTML email with submission details)
+- ✅ Power Automate analyst alert flow (notification to data quality team)
+- ✅ Power Automate data quality monitoring flow (5 validation types, automatic flagging)
+
+### Phase 3: Analytics & Reporting (Week 3) ✅ COMPLETE
+- ✅ Power BI data model with star schema (fact + dimension tables)
+- ✅ DateTable with fiscal calendar and time intelligence
+- ✅ 25+ DAX measures (YoY growth, MoM growth, variance calculations, quality scores)
+- ✅ Executive Summary page (KPI cards, trends, top performers)
+- ✅ Geographic Analysis page (Azure Maps, drill-down matrix, regional performance)
+- ✅ Trend Analysis page (24-month view, variance waterfall, growth indicators)
+- ✅ Test Type Analysis page (performance bars, market share, trend lines)
+- ✅ Data Quality Monitoring page (flags by type/severity, issues by country, resolution time)
+- ✅ Flag Review Workbench page (analyst table with filters, detailed descriptions)
+
+### Phase 4: Submission Management (Week 4) ✅ COMPLETE
+- ✅ Submission History screen (status circles, smart filters, pagination, full-row clickable)
+- ✅ Submission Detail screen (manual labels, variance calculations, validation info)
+- ✅ Data Quality Flags integration (OnVisible load, severity-based icons/colors)
+- ✅ Inline editing mode (contextual form for draft completion and flagged resolution)
+- ✅ Status-based actions (different buttons per workflow: Finish, View, Download, Resolve)
+- ✅ Centralized status management (colStatus collection with GetStatusColor() function)
+- ✅ Delegation-friendly data loading (two-step pattern: SharePoint → collection → filter)
+- ✅ Edit mode save logic (Patch update preserving audit trail)
+
+### Phase 5: Final Documentation & Testing (Week 5) 🔄 IN PROGRESS
+- ✅ Comprehensive screenshot capture (17 Power Apps, 7 Power BI)
+- ✅ Screenshot descriptions and portfolio presentation
+- ✅ README updates with current progress and version history
+- 🔲 Final testing scenarios (flagged item resolution, draft editing)
+- 🔲 Formula documentation in app-documentation.md
+- 🔲 Architecture decision log updates
+- 🔲 Optional: 10-minute video demonstration
+- 🔲 LinkedIn post and portfolio materials
 
 ## 📝 Documentation Standards
 
@@ -1469,7 +932,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **v0.4.0** (December 1, 2025) - Power BI data foundation complete (Day 1 of Week 3)
 - **v0.5.0** (December 3, 2025) - Power BI dashboard complete
 - **v0.6.0** (December 17, 2025) - Power BI dashboard complete with 6 pages including Data Quality Monitoring and Flag Review Workbench
-- **v1.0.0** (Target: December 31, 2025) - Full solution with final documentation
+- **v0.7.0** (December 21, 2025) - Submission Management screens (4-5) complete with inline editing, variance calculations, flag display
+- **v0.8.0** (December 29, 2025) - Comprehensive documentation and screenshots complete (17 Power Apps, 7 Power BI)
+- **v1.0.0** (Target: January 5, 2026) - Final testing and portfolio presentation materials
 
 ### What's Different from the Original System
 This redesign addresses the specific failures of the previous implementation:
@@ -1494,9 +959,9 @@ This redesign addresses the specific failures of the previous implementation:
 
 ---
 
-**Project Status**: ✅ Week 3 Complete - Power BI Dashboard Production-Ready (6 Pages)  
-**Current Phase**: Phase 4 - Final Documentation & Screen 4 Completion  
-**Completion**: 85% Complete (Week 3 finished, Week 4 in progress)  
-**Last Updated**: December 17, 2025  
-**Days Completed**: 17 of 20  
-**Target Completion**: December 20, 2025
+**Project Status**: ✅ Week 4 Complete - Comprehensive Portfolio Project with Full Documentation  
+**Current Phase**: Phase 5 - Final Testing & Presentation Materials  
+**Completion**: 90% Complete (4.5 of 6 weeks)  
+**Last Updated**: December 29, 2025  
+**Days Completed**: 18 of 30  
+**Target Completion**: January 9, 2026
